@@ -47,7 +47,7 @@ public class Utente {
     }
 
     // Metodo per verificare se la stringa è nel formato email
-    private boolean isEmailValida(String email) {
+    public boolean isEmailValida(String email) {
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
         return email.matches(emailRegex); // Restituisce true se l'email corrisponde al pattern, altrimenti false
     }
@@ -55,7 +55,7 @@ public class Utente {
     // Metodo per verificare se un numero di telefono è valido
     public  boolean isNumeroValido(String numeroDiTelefono) {
         String telefonoRegex = "^(\\+\\d{1,3}[- ]?)?\\(?\\d{1,4}\\)?[- ]?\\d{1,4}[- ]?\\d{1,4}$"; // La regex permette numeri con prefisso internazionale (opzionale) e numeri separati da spazi, trattini o parentesi
-        return telefono.matches(telefonoRegex);
+        return numeroDiTelefono.matches(telefonoRegex);
     }
     @Override
     public String toString(){ return "NomeUtente: "+this.nomeUtente+"\n Locazione attuale: "+this.nomeUtente+"\n Email: "+this.email+"\n Telefono: "+this.telefono+"\n Data di registrazione: "+this.dataRegistrazione; }

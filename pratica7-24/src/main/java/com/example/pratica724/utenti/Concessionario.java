@@ -54,7 +54,7 @@ public class Concessionario extends Utente{
         return false;
     }
     // Metodo per verificare se una partita IVA è valida (x l'italia)
-    private boolean isValidPartitaIVA(String partitaIVA) {
+    public boolean isValidPartitaIVA(String partitaIVA) {
 
         // Controllo che la partita IVA sia composta esattamente da 11 cifre
         if (partitaIVA == null || !partitaIVA.matches("\\d{11}")) {
@@ -105,7 +105,7 @@ public class Concessionario extends Utente{
     }
 
     // Metodo per verificare se una ragione sociale è valida
-    private boolean isValidRagioneSociale(String ragioneSociale) {
+    public boolean isValidRagioneSociale(String ragioneSociale) {
         if (ragioneSociale == null || ragioneSociale.isEmpty()) {  // Controllo che la ragione sociale non sia nulla o vuota
             return false;
         }

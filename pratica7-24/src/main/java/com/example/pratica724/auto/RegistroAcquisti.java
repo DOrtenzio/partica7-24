@@ -9,9 +9,9 @@ public class RegistroAcquisti {
     private ArrayList<Privato> registroAcquirenti;
 
     //Costruttore
-    public RegistroAcquisti(ArrayList<Auto> registroAcquistate, ArrayList<Privato> registroAcquirenti) {
-        this.registroAcquistate = registroAcquistate;
-        this.registroAcquirenti = registroAcquirenti;
+    public RegistroAcquisti() {
+        this.registroAcquistate = new ArrayList<Auto>();
+        this.registroAcquirenti = new ArrayList<Privato>();
     }
 
     //get e set

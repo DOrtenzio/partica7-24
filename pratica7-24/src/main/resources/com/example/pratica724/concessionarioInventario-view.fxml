@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #F1E4F3; -fx-border-color: #F4FAFF; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pratica724.ConcessionarioInventarioView">
+    <children>
+        <AnchorPane prefHeight="92.0" prefWidth="900.0" style="-fx-background-color: #30323D; -fx-background-radius: 0 0 28 28; -fx-border-color: #F4FAFF; -fx-border-radius: 0 0 28 28; -fx-border-width: 2;" />
+        <AnchorPane fx:id="vistaArchivio" layoutX="34.0" layoutY="115.0" prefHeight="454.0" prefWidth="831.0" style="-fx-background-color: #F4FAFF; -fx-background-radius: 16; -fx-border-color: #30323D; -fx-border-radius: 16; -fx-border-width: 1.5;">
+            <children>
+                <Button layoutX="14.0" layoutY="35.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="160.0" style="-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;" text="Gestione Inventario" textFill="#30323d">
+                    <font>
+                        <Font name="Goudy Old Style" size="24.0" />
+                    </font>
+                </Button>
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="vistaAcquisti" disable="true" layoutX="107.0" layoutY="115.0" prefHeight="454.0" prefWidth="686.0" style="-fx-background-color: #F4FAFF; -fx-background-radius: 16; -fx-border-color: #30323D; -fx-border-radius: 16; -fx-border-width: 1.5;" visible="false">
+            <children>
+                <Button layoutX="183.0" layoutY="368.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="319.0" style="-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;" text="Gestione Ordini" textFill="#30323d">
+                    <font>
+                        <Font name="Goudy Old Style" size="24.0" />
+                    </font>
+                </Button>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
