@@ -5,8 +5,8 @@ public class AutoSpeciali extends Auto{
     private double incentivo;
 
     //costruttore
-    public AutoSpeciali(String marca, String modello, double prezzo, int annoImmatricolazione, String alimentazione, String aggiunte, double incentivo) {
-        super(marca, modello, prezzo, annoImmatricolazione, alimentazione);
+    public AutoSpeciali(String marca, String modello, double prezzo, int annoImmatricolazione, String alimentazione,String colore,String descrizione, String aggiunte, double incentivo) {
+        super(marca, modello, prezzo, annoImmatricolazione, alimentazione,colore,descrizione);
         this.aggiunte = aggiunte;
         setIncentivo(incentivo);
     }

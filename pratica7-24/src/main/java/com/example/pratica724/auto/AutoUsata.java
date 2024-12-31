@@ -4,8 +4,8 @@ public class AutoUsata extends Auto{
     private int chilometraggio;
 
     //Costruttore
-    public AutoUsata(String marca, String modello, double prezzo, int annoImmatricolazione,String alimentazione, int chilometraggio) {
-        super(marca, modello, prezzo, annoImmatricolazione,alimentazione);
+    public AutoUsata(String marca, String modello, double prezzo, int annoImmatricolazione,String alimentazione, int chilometraggio,String colore,String descrizione) {
+        super(marca, modello, prezzo, annoImmatricolazione,alimentazione,colore,descrizione);
         setChilometraggio(chilometraggio);
     }
 

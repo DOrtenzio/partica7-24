@@ -4,8 +4,8 @@ public class AutoDisabili extends AutoSpeciali{
     private double larghezzaMaxCarrozzina;
 
     //Costruttore
-    public AutoDisabili(String marca, String modello, double prezzo, int annoImmatricolazione, String alimentazione, String aggiunte, double incentivo, double larghezzaMaxCarrozzina) {
-        super(marca, modello, prezzo, annoImmatricolazione, alimentazione, aggiunte, incentivo);
+    public AutoDisabili(String marca, String modello, double prezzo, int annoImmatricolazione, String alimentazione,String colore,String descrizione, String aggiunte, double incentivo, double larghezzaMaxCarrozzina) {
+        super(marca, modello, prezzo, annoImmatricolazione, alimentazione,colore,descrizione,aggiunte, incentivo);
 
     }
 

@@ -6,8 +6,8 @@ public class AutoNuova extends Auto{
     private String optional;
     private int numeroOptional;
 
-    public AutoNuova(String marca, String modello, double prezzo,String alimentazione, String optional) {
-        super(marca, modello, prezzo,LocalDate.now().getYear(),alimentazione);
+    public AutoNuova(String marca, String modello, double prezzo,String alimentazione,String colore,String descrizione, String optional) {
+        super(marca, modello, prezzo,LocalDate.now().getYear(),alimentazione,colore,descrizione);
         this.optional=optional;
     }
 
