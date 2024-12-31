@@ -25,7 +25,7 @@
        </AnchorPane>
        <AnchorPane fx:id="vistaInfo" layoutX="107.0" layoutY="115.0" prefHeight="467.0" prefWidth="686.0" style="-fx-background-color: #F4FAFF; -fx-background-radius: 16; -fx-border-color: #30323D; -fx-border-radius: 16; -fx-border-width: 1.5;">
            <children>
-               <Button fx:id="bInserisci" layoutX="488.0" layoutY="402.0" mnemonicParsing="false" onAction="#cambiaInventarioView" prefHeight="14.0" prefWidth="171.0" style="-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;" text="Inserisci" textFill="#30323d">
+               <Button fx:id="bInserisci" layoutX="488.0" layoutY="402.0" mnemonicParsing="false" onAction="#setInfoConcessionario" prefHeight="14.0" prefWidth="171.0" style="-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;" text="Inserisci" textFill="#30323d">
                    <font>
                        <Font name="Pivot Classic" size="24.0" />
                    </font>

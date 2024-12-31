@@ -162,6 +162,9 @@ public class ConcessionarioController {
         Scene scene = new Scene(fxmlLoader.load(), 900, 600);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
+        ConcessionarioInventarioView concessionarioInventarioView=fxmlLoader.getController();
+        concessionarioInventarioView.setConcessionario(this.concessionario);
+
         stage.setResizable(false);
         stage.getIcons().add(new Image(HelloApplication.class.getResource("/com/example/pratica724/img/logo.png").toString()));
         stage.setScene(scene);
