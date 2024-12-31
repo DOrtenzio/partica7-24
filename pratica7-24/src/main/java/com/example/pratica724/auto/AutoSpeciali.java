@@ -1,12 +1,14 @@
 package com.example.pratica724.auto;
 
+import java.time.LocalDate;
+
 public class AutoSpeciali extends Auto{
     private String aggiunte;
     private double incentivo;
 
     //costruttore
-    public AutoSpeciali(String marca, String modello, double prezzo, int annoImmatricolazione, String alimentazione,String colore,String descrizione, String aggiunte, double incentivo) {
-        super(marca, modello, prezzo, annoImmatricolazione, alimentazione,colore,descrizione);
+    public AutoSpeciali(String marca, String modello, double prezzo, String alimentazione,String colore,String descrizione, String aggiunte, double incentivo) {
+        super(marca, modello, prezzo, LocalDate.now().getYear(), alimentazione,colore,descrizione);
         this.aggiunte = aggiunte;
         setIncentivo(incentivo);
     }

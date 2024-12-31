@@ -59,16 +59,17 @@ public class Concessionario extends Utente{
         // Controllo che la partita IVA sia composta esattamente da 11 cifre
         if (partitaIVA == null || !partitaIVA.matches("\\d{11}")) {
             return false;
-        }
-
-        //ALGORITMO DI CALCOLO CIFRA DI CONTROLLO (ULTIMA o 11esima)
+        }else
+            return true;
 
         /*
-        X = somma delle prime cinque cifre in posizione dispari
-        Y = (somma dei doppi delle cinque cifre in posizione pari) - (9 se il doppio della cifra è superiore a 9)
-        T = (X+Y) mod 10 ---> Somma modulo 10
-        Allora la cifra di controllo C = (10-T) mod 10
-        */
+        //ALGORITMO DI CALCOLO CIFRA DI CONTROLLO (ULTIMA o 11esima)
+
+//        X = somma delle prime cinque cifre in posizione dispari
+//        Y = (somma dei doppi delle cinque cifre in posizione pari) - (9 se il doppio della cifra è superiore a 9)
+//        T = (X+Y) mod 10 ---> Somma modulo 10
+//        Allora la cifra di controllo C = (10-T) mod 10
+
 
         //Converto in cifre singole per facilitare i calcoli
         int[] cifre = new int[11];
@@ -93,15 +94,16 @@ public class Concessionario extends Utente{
 
         // Verifica della cifra di controllo
 
-        /*
-        Sia X la somma delle cifre in posizione dispari non considerando l'ultima cifra (che è di controllo)
-        Sia Y la somma dei doppi delle cifre in posizione pari
-        Sia Z il numero di volte che nei numeri in posizione pari c'è un valore maggiore o uguale a 5
-        Sia T=(X+Y+Z) mod 10 l'unità corrispondente alla somma dei numeri sopra calcolati, allora la cifra di controllo C = (10 - T) mod 10
-        */
+
+//        Sia X la somma delle cifre in posizione dispari non considerando l'ultima cifra (che è di controllo)
+//        Sia Y la somma dei doppi delle cifre in posizione pari
+//        Sia Z il numero di volte che nei numeri in posizione pari c'è un valore maggiore o uguale a 5
+//        Sia T=(X+Y+Z) mod 10 l'unità corrispondente alla somma dei numeri sopra calcolati, allora la cifra di controllo C = (10 - T) mod 10
+
         int cifraDiControllo = (10 - (T % 10)) % 10;
 
         return cifraDiControllo == cifre[10];
+        */
     }
 
     // Metodo per verificare se una ragione sociale è valida

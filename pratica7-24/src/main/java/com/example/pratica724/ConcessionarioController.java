@@ -74,11 +74,11 @@ public class ConcessionarioController {
             concessionario.setRagioneSociale(t8.getText());
         else
             validitaInfo=false;
-
         if (!validitaInfo)
             avvisoVisivo("Errore","bc0000");
         else {
             avvisoVisivo("Ottimo", "42f58d");
+            bFisso.setText("Benvenuto/a "+concessionario.getNomeUtente());
 
             vistaInfo.setDisable(true);
             vistaInfo.setVisible(false);
@@ -122,12 +122,11 @@ public class ConcessionarioController {
     @FXML
     private void avvisoVisivo(String string, String colore){
         bFisso.setStyle("-fx-background-color: #"+colore+"; -fx-background-radius: 16; -fx-border-color: #30323D; -fx-border-radius: 16; -fx-border-width: 2;");
-        String s=bFisso.getText();
         bFisso.setText(string);
         PauseTransition pausa = new PauseTransition(Duration.seconds(3));
         pausa.setOnFinished(e -> {
             bFisso.setStyle("-fx-background-color: #F4FAFF; -fx-background-radius: 16; -fx-border-color: #30323D; -fx-border-radius: 16; -fx-border-width: 2;");
-            bFisso.setText(s);
+            bFisso.setText("Inserisci informazioni");
         });
         pausa.play();
     }
@@ -159,15 +158,16 @@ public class ConcessionarioController {
     @FXML
     private void cambiaInventarioView(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("concessionarioInventario-view.fxml"));
+
         Scene scene = new Scene(fxmlLoader.load(), 900, 600);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        ConcessionarioInventarioView concessionarioInventarioView=fxmlLoader.getController();
-        concessionarioInventarioView.setConcessionario(this.concessionario);
-
         stage.setResizable(false);
         stage.getIcons().add(new Image(HelloApplication.class.getResource("/com/example/pratica724/img/logo.png").toString()));
         stage.setScene(scene);
+
+        ConcessionarioInventarioView concessionarioInventarioView=fxmlLoader.getController();
+        System.out.println(concessionarioInventarioView);
+        concessionarioInventarioView.setConcessionario(this.concessionario);
     }
 
     @FXML

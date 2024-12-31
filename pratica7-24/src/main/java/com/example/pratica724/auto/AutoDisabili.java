@@ -1,12 +1,14 @@
 package com.example.pratica724.auto;
 
+import java.time.LocalDate;
+
 public class AutoDisabili extends AutoSpeciali{
     private double larghezzaMaxCarrozzina;
 
     //Costruttore
-    public AutoDisabili(String marca, String modello, double prezzo, int annoImmatricolazione, String alimentazione,String colore,String descrizione, String aggiunte, double incentivo, double larghezzaMaxCarrozzina) {
-        super(marca, modello, prezzo, annoImmatricolazione, alimentazione,colore,descrizione,aggiunte, incentivo);
-
+    public AutoDisabili(String marca, String modello, double prezzo, String alimentazione,String colore,String descrizione, String aggiunte, double incentivo, double larghezzaMaxCarrozzina) {
+        super(marca, modello, prezzo, alimentazione,colore,descrizione,aggiunte, incentivo);
+        setLarghezzaMaxCarrozzina(larghezzaMaxCarrozzina);
     }
 
     //get e set

@@ -26,7 +26,7 @@
         </AnchorPane>
         <AnchorPane fx:id="boxPulsanti" layoutX="20.0" layoutY="115.0" prefHeight="454.0" prefWidth="204.0" style="-fx-background-color: #F4FAFF; -fx-background-radius: 16; -fx-border-color: #30323D; -fx-border-radius: 16; -fx-border-width: 1.5;">
             <children>
-                <Button fx:id="b1" layoutX="14.0" layoutY="29.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="168.0" style="-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;" text="Aggiungi nuova Auto" textFill="#30323d">
+                <Button fx:id="b1" layoutX="14.0" layoutY="29.0" mnemonicParsing="false" onAction="#aggiungiAuto" prefHeight="39.0" prefWidth="168.0" style="-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;" text="Aggiungi nuova Auto" textFill="#30323d">
                     <font>
                         <Font name="Pivot Classic" size="12.0" />
                     </font>
@@ -43,96 +43,6 @@
                 </Button>
             </children>
         </AnchorPane>
-        <AnchorPane fx:id="boxDinamica" layoutX="282.0" layoutY="115.0" prefHeight="454.0" prefWidth="618.0" style="-fx-background-color: #F4FAFF; -fx-background-radius: 16 0 0 16; -fx-border-color: #30323D; -fx-border-radius: 16 0 0 16; -fx-border-width: 1.5;">
-         <Label layoutX="18.0" layoutY="21.0" prefHeight="39.0" prefWidth="579.0" text="Seleziona una delle seguenti opzioni ed inserisci:">
-            <font>
-               <Font name="Pivot Classic" size="18.0" />
-            </font>
-         </Label>
-            <Label layoutX="19.0" layoutY="96.0" prefHeight="43.0" prefWidth="260.0" text="Inserisci la marca">
-                <font>
-                    <Font name="Pivot Classic" size="14.0" />
-                </font></Label>
-            <TextField fx:id="t1" layoutX="19.0" layoutY="143.0" prefHeight="12.0" prefWidth="260.0" promptText="Fiat" style="-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-border-image-width: 1.4; -fx-border-radius: 12 0 12 0; -fx-background-radius: 12 0 12 0;">
-                <font>
-                    <Font name="Goudy Old Style" size="12.0" />
-                </font>
-            </TextField>
-            <Label layoutX="302.0" layoutY="185.0" prefHeight="43.0" prefWidth="260.0" text="Descrizione (Opzionale)">
-                <font>
-                    <Font name="Pivot Classic" size="14.0" />
-                </font></Label>
-            <Label layoutX="301.0" layoutY="45.0" prefHeight="43.0" prefWidth="260.0" text="Inserisci l'anno d'Immatricolazione">
-                <font>
-                    <Font name="Pivot Classic" size="14.0" />
-                </font></Label>
-            <TextField fx:id="cshbvvs" layoutX="301.0" layoutY="92.0" prefHeight="12.0" prefWidth="260.0" promptText="2010" style="-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-border-image-width: 1.4; -fx-border-radius: 12 0 12 0; -fx-background-radius: 12 0 12 0;">
-                <font>
-                    <Font name="Goudy Old Style" size="12.0" />
-                </font>
-            </TextField>
-            <Label layoutX="19.0" layoutY="372.0" prefHeight="43.0" prefWidth="260.0" text="Inserisci il colore">
-                <font>
-                    <Font name="Pivot Classic" size="14.0" />
-                </font></Label>
-            <TextField fx:id="t3" layoutX="19.0" layoutY="413.0" prefHeight="12.0" prefWidth="260.0" promptText="Rosso" style="-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-border-image-width: 1.4; -fx-border-radius: 12 0 12 0; -fx-background-radius: 12 0 12 0;">
-                <font>
-                    <Font name="Goudy Old Style" size="12.0" />
-                </font>
-            </TextField>
-            <Label layoutX="19.0" layoutY="303.0" prefHeight="43.0" prefWidth="260.0" text="Inserisci l'alimentazione">
-                <font>
-                    <Font name="Pivot Classic" size="14.0" />
-                </font></Label>
-            <Label layoutX="19.0" layoutY="234.0" prefHeight="43.0" prefWidth="260.0" text="Inserisci il prezzo">
-                <font>
-                    <Font name="Pivot Classic" size="14.0" />
-                </font></Label>
-            <TextField fx:id="t4" layoutX="19.0" layoutY="281.0" prefHeight="12.0" prefWidth="260.0" promptText="19.000" style="-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-border-image-width: 1.4; -fx-border-radius: 12 0 12 0; -fx-background-radius: 12 0 12 0;">
-                <font>
-                    <Font name="Goudy Old Style" size="12.0" />
-                </font>
-            </TextField>
-            <Label layoutX="19.0" layoutY="165.0" prefHeight="43.0" prefWidth="260.0" text="Inserisci il modello">
-                <font>
-                    <Font name="Pivot Classic" size="14.0" />
-                </font></Label>
-            <TextField fx:id="t5" layoutX="19.0" layoutY="212.0" prefHeight="12.0" prefWidth="260.0" promptText="Panda" style="-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-border-image-width: 1.4; -fx-border-radius: 12 0 12 0; -fx-background-radius: 12 0 12 0;">
-                <font>
-                    <Font name="Goudy Old Style" size="12.0" />
-                </font>
-            </TextField>
-         <TextArea fx:id="t6" layoutX="301.0" layoutY="231.0" prefHeight="155.0" prefWidth="260.0" promptText="Modello speciale 50 anni" style="-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-border-image-width: 1.4; -fx-border-radius: 12 0 12 0; -fx-background-radius: 12 0 12 0;">
-            <font>
-               <Font name="Goudy Old Style" size="12.0" />
-            </font></TextArea>
-            <Button layoutX="322.0" layoutY="406.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="219.0" style="-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;" text="Inserisci" textFill="#30323d">
-                <font>
-                    <Font name="Pivot Classic" size="12.0" />
-                </font>
-            </Button>
-         <ChoiceBox fx:id="alimentazione" layoutX="19.0" layoutY="346.0" prefHeight="26.0" prefWidth="260.0" style="-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-border-image-width: 1.4; -fx-border-radius: 12 0 12 0; -fx-background-radius: 12 0 12 0;" />
-         <Label layoutX="301.0" layoutY="120.0" prefHeight="43.0" prefWidth="260.0" text="Inserisci il chilometraggio">
-            <font>
-               <Font name="Pivot Classic" size="14.0" />
-            </font>
-         </Label>
-         <TextField fx:id="cvbksbvkab" layoutX="301.0" layoutY="161.0" prefHeight="12.0" prefWidth="260.0" promptText="200.000" style="-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-border-image-width: 1.4; -fx-border-radius: 12 0 12 0; -fx-background-radius: 12 0 12 0;">
-            <font>
-               <Font name="Goudy Old Style" size="12.0" />
-            </font>
-         </TextField>
-         <RadioButton fx:id="usata" layoutX="39.0" layoutY="67.0" mnemonicParsing="false" selected="true" text="Usata">
-            <font>
-               <Font name="Pivot Classic" size="12.0" />
-            </font>
-            <toggleGroup>
-               <ToggleGroup fx:id="toggle" />
-            </toggleGroup></RadioButton>
-         <RadioButton fx:id="km0" layoutX="160.0" layoutY="67.0" mnemonicParsing="false" text="Km0" toggleGroup="$toggle">
-            <font>
-               <Font name="Pivot Classic" size="12.0" />
-            </font></RadioButton>
-        </AnchorPane>
+        <AnchorPane fx:id="boxDinamica" layoutX="282.0" layoutY="115.0" prefHeight="454.0" prefWidth="618.0" style="-fx-background-color: #F4FAFF; -fx-background-radius: 16 0 0 16; -fx-border-color: #30323D; -fx-border-radius: 16 0 0 16; -fx-border-width: 1.5;" visible="false" />
     </children>
 </AnchorPane>
