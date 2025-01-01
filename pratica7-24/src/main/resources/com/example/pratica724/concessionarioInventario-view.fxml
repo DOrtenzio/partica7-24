@@ -48,9 +48,6 @@
             </Button>
             </children>
         </AnchorPane>
-        <AnchorPane fx:id="boxDinamica" layoutX="282.0" layoutY="115.0" prefHeight="454.0" prefWidth="618.0" style="-fx-background-color: #F4FAFF; -fx-background-radius: 16 0 0 16; -fx-border-color: #30323D; -fx-border-radius: 16 0 0 16; -fx-border-width: 1.5;">
-         <children>
-            <ScrollPane layoutX="14.0" layoutY="60.0" prefHeight="387.0" prefWidth="590.0" style="-fx-background-color: #F4FAFF;" />
-         </children></AnchorPane>
+        <AnchorPane fx:id="boxDinamica" layoutX="282.0" layoutY="115.0" prefHeight="454.0" prefWidth="618.0" style="-fx-background-color: #F4FAFF; -fx-background-radius: 16 0 0 16; -fx-border-color: #30323D; -fx-border-radius: 16 0 0 16; -fx-border-width: 1.5;" />
     </children>
 </AnchorPane>

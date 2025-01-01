@@ -21,7 +21,7 @@ public class ConcessionarioController {
     @FXML
     private AnchorPane vistaArchivio,vistaAcquisti,vistaInfo;
     @FXML
-    private Button bIndietro,bAvanti,bInserisci,bFisso;
+    private Button bIndietro,bAvanti,bInserisci,bFisso,b1,b2;
     @FXML
     private TextField t1,t2,t3,t4,t5,t6,t7,t8;
 
@@ -88,6 +88,9 @@ public class ConcessionarioController {
             vistaArchivio.setDisable(false);
             vistaArchivio.setVisible(true);
             entrataAnchor(vistaArchivio,-300,0);
+
+            cambioColorePassaggioMouse(b1,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
+            cambioColorePassaggioMouse(b2,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
         }
     }
 
