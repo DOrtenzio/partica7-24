@@ -237,7 +237,7 @@ public class ConcessionarioAcquistiController {
         tipoLabel1.setPrefSize(116.0, 28.0);
         tipoLabel1.setStyle("-fx-font-family: 'Pivot Classic'; -fx-font-size: 16.0;");
 
-        pane3.getChildren().addAll(modelloLabel1,marchioLabel1,alimentazioneLabel1,selezionaButton1,vediMeglio2);
+        pane3.getChildren().addAll(modelloLabel1,marchioLabel1,alimentazioneLabel1,tipoLabel1,selezionaButton1,vediMeglio2);
         hBox.getChildren().addAll(pane1, pane2, pane3);
 
         return hBox;
@@ -384,7 +384,7 @@ public class ConcessionarioAcquistiController {
         label2.setFont(Font.font("Pivot Classic", 32.0));
 
         Label label3 = new Label(auto.toString());
-        label3.setPrefHeight(121.0);
+        label3.setMaxHeight(800.0);
         label3.setPrefWidth(572.0);
         label3.setWrapText(true);
         label3.setFont(Font.font("Goudy Old Style", 12.0));
@@ -542,8 +542,10 @@ public class ConcessionarioAcquistiController {
                 if (privatoa!=null) {
                     entrataAnchor(vistaInfo, 0, 1200);
                     vistaInfo.setVisible(false);
+
                     registroAcquisti.addAcquisto(autoVenduta, privatoa);
                     inventarioAuto.rimuoviAuto(autoVenduta); //Auto inserita e rimossa da quelle disponibili
+
                     boxDinamica.setDisable(false);
                     boxPulsanti.setDisable(false);
                 }else{
@@ -622,7 +624,7 @@ public class ConcessionarioAcquistiController {
             vBox.setPrefSize(572.0, 408.0);
             vBox.setStyle("-fx-background-color: #F4FAFF;");
 
-            for (int i = 0; i < inventarioAuto.getInventario().size(); i++) {
+            for (int i = 0; i < registroAcquisti.getRegistroAcquistate().size(); i++) {
                 HBox hBox1 = aggiungiRigaCancellazione(registroAcquisti.getRegistroAcquistate().get(i), registroAcquisti.getRegistroAcquirenti().get(i), vBox);
                 Pane spazio = new Pane();
                 spazio.setPrefSize(572.0, 50.0);
@@ -711,7 +713,7 @@ public class ConcessionarioAcquistiController {
         label2.setFont(Font.font("Pivot Classic", 32.0));
 
         Label label3 = new Label(auto.toString());
-        label3.setPrefHeight(121.0);
+        label3.setMaxHeight(800.0);
         label3.setPrefWidth(572.0);
         label3.setWrapText(true);
         label3.setFont(Font.font("Goudy Old Style", 12.0));
@@ -1055,7 +1057,7 @@ public class ConcessionarioAcquistiController {
         label2.setFont(Font.font("Pivot Classic", 32.0));
 
         Label label3 = new Label(auto.toString());
-        label3.setPrefHeight(121.0);
+        label3.setMaxHeight(800.0);
         label3.setPrefWidth(572.0);
         label3.setWrapText(true);
         label3.setFont(Font.font("Goudy Old Style", 12.0));
@@ -1310,12 +1312,13 @@ public class ConcessionarioAcquistiController {
     //Mostra
     @FXML
     public void mostraTutto(){
-        boxDinamica.setVisible(true);
-        boxDinamica.setDisable(false);
-
         if (registroAcquisti.getRegistroAcquistate().isEmpty())
             avvisoVisivo("Errore","bc0000");
+
         else {
+            boxDinamica.setVisible(true);
+            boxDinamica.setDisable(false);
+
             bFisso.setText("Vendite effettuate");
             boxDinamica.getChildren().clear();
             entrataAnchor(boxDinamica, 1200, 0);
@@ -1332,7 +1335,7 @@ public class ConcessionarioAcquistiController {
             vBox.setPrefSize(572.0, 408.0);
             vBox.setStyle("-fx-background-color: #F4FAFF;");
 
-            for (int i = 0; i < inventarioAuto.getInventario().size(); i++) {
+            for (int i = 0; i < registroAcquisti.getRegistroAcquistate().size(); i++) {
                 HBox hBox1 = aggiungiRigaSolaVista(registroAcquisti.getRegistroAcquistate().get(i), registroAcquisti.getRegistroAcquirenti().get(i), vBox);
                 Pane spazio = new Pane();
                 spazio.setPrefSize(572.0, 50.0);
@@ -1352,6 +1355,8 @@ public class ConcessionarioAcquistiController {
             labelTitolo.setStyle("-fx-font-family: 'Pivot Classic'; -fx-font-size: 24.0;");
             // Aggiunta degli elementi al pannello
             boxDinamica.getChildren().addAll(labelTitolo, scrollPane);
+
+            boxDinamica.requestLayout();
         }
     }
     @FXML
@@ -1421,7 +1426,7 @@ public class ConcessionarioAcquistiController {
         label2.setFont(Font.font("Pivot Classic", 32.0));
 
         Label label3 = new Label(auto.toString());
-        label3.setPrefHeight(121.0);
+        label3.setMaxHeight(800.0);
         label3.setPrefWidth(572.0);
         label3.setWrapText(true);
         label3.setFont(Font.font("Goudy Old Style", 12.0));
@@ -1491,7 +1496,7 @@ public class ConcessionarioAcquistiController {
 
         pane1.getChildren().addAll(acquirente,infoAcquirente,modello, marca, alimentazioneLabel, vediMeglio, tipoLabel);
 
-        hBox.getChildren().addAll(pane1);
+        hBox.getChildren().add(pane1);
 
         return hBox;
     }

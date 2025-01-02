@@ -27,7 +27,7 @@ public class ConcessionarioInventarioView {
     @FXML
     private Button b1,b2,b3,b4,b5,bFisso;
     @FXML
-    private AnchorPane boxDinamica,boxPulsanti;
+    private AnchorPane boxDinamica,boxPulsanti,root;
 
     private Concessionario concessionario;
     private InventarioAuto inventarioAuto;
@@ -825,7 +825,7 @@ public class ConcessionarioInventarioView {
         selezionaButton.setStyle("-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
         selezionaButton.setOnAction(e->{
             try {
-                cancellaSelezionata(auto1);
+                confermaCancellazione(auto1);
             } catch (Exception ex) {
                 avvisoVisivo("Errore","bc0000");
             }
@@ -889,7 +889,7 @@ public class ConcessionarioInventarioView {
         cambioColorePassaggioMouse(selezionaButton1,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
         selezionaButton1.setOnAction(e->{
             try {
-                cancellaSelezionata(auto2);
+                confermaCancellazione(auto2);
             } catch (Exception ex) {
                 avvisoVisivo("Errore","bc0000");
             }
@@ -913,7 +913,7 @@ public class ConcessionarioInventarioView {
         tipoLabel1.setPrefSize(116.0, 28.0);
         tipoLabel1.setStyle("-fx-font-family: 'Pivot Classic'; -fx-font-size: 16.0;");
 
-        pane3.getChildren().addAll(modelloLabel1,marchioLabel1,alimentazioneLabel1,selezionaButton1,vediMeglio2);
+        pane3.getChildren().addAll(modelloLabel1,marchioLabel1,alimentazioneLabel1,tipoLabel1,selezionaButton1,vediMeglio2);
         hBox.getChildren().addAll(pane1, pane2, pane3);
 
         return hBox;
@@ -955,7 +955,7 @@ public class ConcessionarioInventarioView {
         cambioColorePassaggioMouse(selezionaButton,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
         selezionaButton.setOnAction(e->{
             try {
-                cancellaSelezionata(auto1);
+                confermaCancellazione(auto1);
             } catch (Exception ex) {
                 avvisoVisivo("Errore","bc0000");
             }
@@ -1064,12 +1064,134 @@ public class ConcessionarioInventarioView {
         label2.setFont(Font.font("Pivot Classic", 32.0));
 
         Label label3 = new Label(auto.toString());
-        label3.setPrefHeight(800.0);
+        label3.setMaxHeight(800.0);
         label3.setPrefWidth(572.0);
         label3.setWrapText(true);
         label3.setFont(Font.font("Goudy Old Style", 12.0));
 
         vbox.getChildren().addAll(hbox1,hbox2,label2,label3);
+    }
+    @FXML
+    public void confermaCancellazione(Auto auto) {
+        boxPulsanti.setDisable(true);
+        boxDinamica.setDisable(true);
+
+        // Creazione dell'AnchorPane
+        AnchorPane box5 = new AnchorPane();
+        box5.setId("box5");
+        box5.setDisable(true);
+        box5.setLayoutX(219.0);
+        box5.setLayoutY(214.0);
+        box5.setPrefHeight(142.0);
+        box5.setPrefWidth(283.0);
+        box5.setStyle("-fx-background-color: F4FAFF; " +
+                "-fx-background-radius: 12; " +
+                "-fx-border-color: #24292f; " +
+                "-fx-border-radius: 12; " +
+                "-fx-border-width: 2;");
+        box5.setVisible(false);
+
+        // Creazione del primo pulsante (No)
+        Button buttonNo = new Button("No");
+        buttonNo.setLayoutX(42.0);
+        buttonNo.setLayoutY(83.0);
+        buttonNo.setMnemonicParsing(false);
+        buttonNo.setPrefHeight(42.0);
+        buttonNo.setPrefWidth(99.0);
+        buttonNo.setStyle("-fx-border-color: #24292f; " +
+                "-fx-border-radius: 16; " +
+                "-fx-background-radius: 16; " +
+                "-fx-background-color: #F4FAFF; " +
+                "-fx-font-family: 'Goudy Stout'; " +
+                "-fx-font-size: 10;"
+        );
+        buttonNo.setWrapText(true);
+        buttonNo.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
+        buttonNo.setOnAction(event ->{
+            box5.setVisible(false);
+            box5.setDisable(true);
+
+            boxDinamica.setDisable(false);
+            boxPulsanti.setDisable(false);
+        });
+        //Metodo per cambio colore quando mouse sovrappone
+        buttonNo.setOnMouseMoved(event -> {
+            buttonNo.setStyle("-fx-border-color: #24292f; " +
+                    "-fx-border-radius: 16; " +
+                    "-fx-background-radius: 16; " +
+                    "-fx-background-color: #FFECA1; " +
+                    "-fx-font-family: 'Goudy Stout'; " +
+                    "-fx-font-size: 10;");
+        });
+        buttonNo.setOnMouseExited(event -> {
+            buttonNo.setStyle("-fx-border-color: #24292f; " +
+                    "-fx-border-radius: 16; " +
+                    "-fx-background-radius: 16; " +
+                    "-fx-background-color: #F4FAFF; " +
+                    "-fx-font-family: 'Goudy Stout'; " +
+                    "-fx-font-size: 10;");
+        });
+
+        // Creazione del secondo pulsante (Si)
+        Button buttonSi = new Button("Si");
+        buttonSi.setLayoutX(154.0);
+        buttonSi.setLayoutY(82.0);
+        buttonSi.setMnemonicParsing(false);
+        buttonSi.setPrefHeight(42.0);
+        buttonSi.setPrefWidth(99.0);
+        buttonSi.setStyle("-fx-border-color: #24292f; " +
+                "-fx-border-radius: 16; " +
+                "-fx-background-radius: 16; " +
+                "-fx-background-color: F1E4F3; " +
+                "-fx-font-family: 'Goudy Stout'; " +
+                "-fx-font-size: 10;");
+        buttonSi.setWrapText(true);
+        buttonSi.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
+        buttonSi.setOnAction(event ->{
+            cancellaSelezionata(auto);
+            entrataAnchor(box5,0,1200);
+
+            boxDinamica.setDisable(false);
+            boxPulsanti.setDisable(false);
+            box5.setDisable(true);
+            box5.setVisible(false);
+        });
+        //Metodo per cambio colore quando mouse sovrappone
+        buttonSi.setOnMouseMoved(event -> {
+            buttonSi.setStyle("-fx-border-color: #24292f; " +
+                    "-fx-border-radius: 16; " +
+                    "-fx-background-radius: 16; " +
+                    "-fx-background-color: #FFECA1; " +
+                    "-fx-font-family: 'Goudy Stout'; " +
+                    "-fx-font-size: 10;");
+        });
+        buttonSi.setOnMouseExited(event -> {
+            buttonSi.setStyle("-fx-border-color: #24292f; " +
+                    "-fx-border-radius: 16; " +
+                    "-fx-background-radius: 16; " +
+                    "-fx-background-color: F1E4F3; " +
+                    "-fx-font-family: 'Goudy Stout'; " +
+                    "-fx-font-size: 10;");
+        });
+
+        // Creazione dell'etichetta
+        Label label = new Label("Sei sicuro?");
+        label.setAlignment(javafx.geometry.Pos.CENTER);
+        label.setLayoutX(29.0);
+        label.setLayoutY(14.0);
+        label.setPrefHeight(60.0);
+        label.setPrefWidth(231.0);
+        label.setStyle("-fx-font-family: 'Goudy Stout'; " +
+                "-fx-font-size: 18;");
+
+        // Aggiunta dei figli all'AnchorPane
+        box5.getChildren().addAll(buttonNo, buttonSi, label);
+
+        root.getChildren().add(box5);
+
+        box5.setDisable(false);
+        box5.setVisible(true);
+        entrataAnchor(box5,1200,0);
     }
 
     //RICERCA
@@ -1365,7 +1487,7 @@ public class ConcessionarioInventarioView {
         tipoLabel1.setPrefSize(116.0, 28.0);
         tipoLabel1.setStyle("-fx-font-family: 'Pivot Classic'; -fx-font-size: 14.0;");
 
-        pane3.getChildren().addAll(modelloLabel1,marchioLabel1,alimentazioneLabel1,vediMeglio2);
+        pane3.getChildren().addAll(modelloLabel1,marchioLabel1,alimentazioneLabel1,tipoLabel1,vediMeglio2);
         hBox.getChildren().addAll(pane1, pane2, pane3);
 
         return hBox;
@@ -1489,7 +1611,7 @@ public class ConcessionarioInventarioView {
         label2.setFont(Font.font("Pivot Classic", 32.0));
 
         Label label3 = new Label(auto.toString());
-        label3.setPrefHeight(800.0);
+        label3.setMaxHeight(800.0);
         label3.setPrefWidth(572.0);
         label3.setWrapText(true);
         label3.setFont(Font.font("Goudy Old Style", 12.0));
@@ -1618,7 +1740,7 @@ public class ConcessionarioInventarioView {
         label2.setFont(Font.font("Pivot Classic", 32.0));
 
         Label label3 = new Label(auto.toString());
-        label3.setPrefHeight(800.0);
+        label3.setMaxHeight(800.0);
         label3.setPrefWidth(572.0);
         label3.setWrapText(true);
         label3.setFont(Font.font("Goudy Old Style", 12.0));
@@ -1720,7 +1842,7 @@ public class ConcessionarioInventarioView {
         tipoLabel1.setPrefSize(116.0, 28.0);
         tipoLabel1.setStyle("-fx-font-family: 'Pivot Classic'; -fx-font-size: 14.0;");
 
-        pane3.getChildren().addAll(modelloLabel1,marchioLabel1,alimentazioneLabel1,vediMeglio2);
+        pane3.getChildren().addAll(modelloLabel1,marchioLabel1,alimentazioneLabel1,tipoLabel1,vediMeglio2);
         hBox.getChildren().addAll(pane1, pane2, pane3);
 
         return hBox;

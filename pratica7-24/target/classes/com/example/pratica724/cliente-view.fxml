@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #F1E4F3; -fx-border-color: #F4FAFF; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pratica724.ClienteController">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #F1E4F3; -fx-border-color: #F4FAFF; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pratica724.ClienteController">
     <children>
         <AnchorPane prefHeight="103.0" prefWidth="900.0" style="-fx-background-color: #30323D; -fx-background-radius: 0 0 28 28; -fx-border-color: #F4FAFF; -fx-border-radius: 0 0 28 28; -fx-border-width: 2;">
             <ImageView fitHeight="73.0" fitWidth="230.0" layoutX="127.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
