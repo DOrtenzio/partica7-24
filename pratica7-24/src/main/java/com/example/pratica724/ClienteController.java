@@ -286,7 +286,7 @@ public class ClienteController {
 
         // VBox inside ScrollPane
         VBox vBox = new VBox();
-        vBox.setPrefSize(570, 375);
+        vBox.setPrefSize(550, 375);
         vBox.setStyle("-fx-background-color: #F4FAFF;");
 
         if (autoVisibili.size()%2==0){
@@ -1135,6 +1135,7 @@ public class ClienteController {
         vistaConfronti.setDisable(false);
 
         entrataAnchor(vistaConfronti,-300,0);
+        vistaConfronti.requestLayout();
         bAvanti.setDisable(true);
         bIndietro.setDisable(false);
         inserimentoPreferiti();
@@ -1149,6 +1150,7 @@ public class ClienteController {
         vistaPrincipale.setDisable(false);
 
         entrataAnchor(vistaPrincipale,-300,0);
+        vistaPrincipale.requestLayout();
         bAvanti.setDisable(false);
         bIndietro.setDisable(true);
         bFisso.setText("Quante auto ;-)");
@@ -1351,6 +1353,9 @@ public class ClienteController {
     @FXML
     private void acquista(Auto autoAcquistata){
         vistaConfronti.getChildren().clear();
+        bIndietro.setVisible(false);
+        bAvanti.setVisible(false);
+        bIndietro.setDisable(true);
         // Button b111
         Button b111 = new Button("<---");
         b111.setLayoutX(343.0);
@@ -1360,7 +1365,13 @@ public class ClienteController {
         b111.setTextFill(javafx.scene.paint.Color.web("#30323d"));
         b111.setFont(Font.font("Pivot Classic", 16.0));
         cambioColorePassaggioMouse(b111,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
-        b111.setOnAction(e -> inserimentoPreferiti() );
+        b111.setOnAction(e -> {
+                inserimentoPreferiti();
+                bIndietro.setVisible(true);
+                bAvanti.setVisible(true);
+                bIndietro.setDisable(false);
+            }
+        );
 
         // Label "Riepilogo : Modello - Marca"
         Label label1 = new Label("Riepilogo : "+autoAcquistata.getModello()+" - "+autoAcquistata.getMarca());
@@ -1402,9 +1413,9 @@ public class ClienteController {
 
         // Button bAcquista
         Button bAcquista = new Button("Acquista");
-        bAcquista.setLayoutX(485.0);
+        bAcquista.setLayoutX(465.0);
         bAcquista.setLayoutY(370.0);
-        bAcquista.setPrefSize(176.0, 38.0);
+        bAcquista.setPrefSize(200.0, 38.0);
         bAcquista.setStyle("-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
         bAcquista.setTextFill(javafx.scene.paint.Color.web("#30323d"));
         bAcquista.setFont(Font.font("Pivot Classic", 16.0));
@@ -1455,6 +1466,9 @@ public class ClienteController {
 
                 // Add elements to root
                 vistaConfronti.getChildren().addAll(l1, im1, im2, l2);
+                bIndietro.setVisible(true);
+                bAvanti.setVisible(true);
+                bIndietro.setDisable(false);
             }
         );
 
@@ -1464,11 +1478,15 @@ public class ClienteController {
         checkBox.setLayoutY(325.0);
         checkBox.setFont(Font.font("Goudy Old Style", 14.0));
         checkBox.setOnMouseClicked(e->{
-            label4.setText("Saldo finale: "+(autoAcquistata.getPrezzo()-inventarioAuto.scontoPermuta(autoAcquistata.getPrezzo(), (AutoUsata) privato.getAutoAttuale()))+" €");
+            if (checkBox.isSelected())
+                label4.setText("Saldo finale: "+(autoAcquistata.getPrezzo()-inventarioAuto.scontoPermuta(autoAcquistata.getPrezzo(), (AutoUsata) privato.getAutoAttuale()))+" €");
+            else
+                label4.setText("Saldo finale: "+autoAcquistata.getPrezzo()+" €");
         });
 
         // Add all elements to the root
-        vistaConfronti.getChildren().addAll(b111, label1, label2, imageView, label3, label4, bAcquista, checkBox, bAvanti, bIndietro);
+        vistaConfronti.getChildren().addAll(b111, label1, label2, imageView, label3, label4, bAcquista, checkBox);
+        entrataAnchor(vistaConfronti,1200,0);
     }
     @FXML
     public void confermaAcquisto(Auto auto) {
