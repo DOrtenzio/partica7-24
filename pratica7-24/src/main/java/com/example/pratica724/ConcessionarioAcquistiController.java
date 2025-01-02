@@ -320,7 +320,6 @@ public class ConcessionarioAcquistiController {
     }
     @FXML
     private void mostraMeglioAcquistoNuovo(VBox vbox, Auto auto){
-        System.out.println("Mostra meglio");
         vbox.getChildren().clear();
 
         HBox hbox1 = new HBox();
@@ -409,6 +408,7 @@ public class ConcessionarioAcquistiController {
                 "-fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
         bInserisci.setTextFill(javafx.scene.paint.Color.web("#30323D"));
         bInserisci.setFont(new Font("Pivot Classic", 24));
+        cambioColorePassaggioMouse(bInserisci,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
 
         vistaInfo.getChildren().add(bInserisci);
 
@@ -493,7 +493,7 @@ public class ConcessionarioAcquistiController {
         vistaInfo.getChildren().add(label5);
 
         TextField nomeCognome = new TextField();
-        nomeCognome.setPromptText("Mario rossi");
+        nomeCognome.setPromptText("Mario Rossi");
         nomeCognome.setLayoutX(358.0);
         nomeCognome.setLayoutY(70.0);
         nomeCognome.setPrefSize(260.0, 12.0);
@@ -510,7 +510,7 @@ public class ConcessionarioAcquistiController {
         vistaInfo.getChildren().add(label6);
 
         TextField cie = new TextField();
-        cie.setPromptText("CA 374764");
+        cie.setPromptText("CA374764");
         cie.setLayoutX(358.0);
         cie.setLayoutY(161.0);
         cie.setPrefSize(260.0, 12.0);
@@ -538,12 +538,17 @@ public class ConcessionarioAcquistiController {
 
         bInserisci.setOnAction(e->{
             try {
-                Privato privato=setInfoAcquirente(nomeUtente.getText(),locazione.getText(),email.getText(),numeroTelefono.getText(),nomeCognome.getText(), cie.getText(),autoVenduta,codiceFiscale.getText());
-                registroAcquisti.addAcquisto(autoVenduta,privato);
-                inventarioAuto.rimuoviAuto(autoVenduta); //Auto inserita e rimossa da quelle disponibili
-                entrataAnchor(vistaInfo,0,-300);
-                boxDinamica.getChildren().remove(vistaInfo);
-                boxDinamica.setDisable(false);
+                Privato privatoa=setInfoAcquirente(nomeUtente.getText(),locazione.getText(),email.getText(),numeroTelefono.getText(),nomeCognome.getText(), cie.getText(),autoVenduta,codiceFiscale.getText());
+                if (privatoa!=null) {
+                    entrataAnchor(vistaInfo, 0, 1200);
+                    vistaInfo.setVisible(false);
+                    registroAcquisti.addAcquisto(autoVenduta, privatoa);
+                    inventarioAuto.rimuoviAuto(autoVenduta); //Auto inserita e rimossa da quelle disponibili
+                    boxDinamica.setDisable(false);
+                    boxPulsanti.setDisable(false);
+                }else{
+                    avvisoVisivo("Errore","bc0000");
+                }
             } catch (Exception ex) {
                 avvisoVisivo("Errore","bc0000");
             }
@@ -551,40 +556,27 @@ public class ConcessionarioAcquistiController {
     }
     @FXML
     private Privato setInfoAcquirente(String nomeUtente, String locazione, String email, String telefono, String nomeCognome, String numeroCie, Auto autoAttuale,String codiceFiscale){
-        boolean validitaInfo=true;
+        boolean isOk=true;
         Privato privato=new Privato(null,null,"template","template",null,"template",autoAttuale,"template");
 
         privato.setNomeUtente(nomeUtente);
         privato.setLocazione(locazione);
+        privato.setEmail(email);
+        privato.setTelefono(telefono);
+        privato.setNumeroCie(numeroCie);
+        privato.setNomeCognome(nomeCognome);
+        privato.setCodiceFiscale(codiceFiscale);
 
-        if (privato.isEmailValida(email))
-            privato.setEmail(email);
-        else
-            validitaInfo=false;
-        if (privato.isNumeroValido(telefono))
-            privato.setTelefono(telefono);
-        else
-            validitaInfo=false;
-        if (privato.isValidCIE(numeroCie))
-            privato.setNumeroCie(numeroCie);
-        else
-            validitaInfo=false;
-        if (privato.isValidNomeCognome(nomeCognome))
-            privato.setNomeCognome(nomeCognome);
-        else
-            validitaInfo=false;
-        if (privato.isValidCodiceFiscale(codiceFiscale))
-            privato.setCodiceFiscale(codiceFiscale);
-        else
-            validitaInfo=false;
-        if (!validitaInfo)
-            avvisoVisivo("Errore","bc0000");
-        else {
+        //TODO: INSERIRE CONTROLLO
+
+        if (!isOk) {
+            avvisoVisivo("Errore", "bc0000");
+            return null;
+        }else {
             avvisoVisivo("Ottimo", "42f58d");
             bFisso.setText("Vendita registrata");
             return privato;
         }
-        return privato;
     }
 
 
@@ -593,42 +585,46 @@ public class ConcessionarioAcquistiController {
     public void cancellaVendita(){
         boxDinamica.setVisible(true);
         boxDinamica.setDisable(false);
-        bFisso.setText("Cancella vendita");
-        boxDinamica.getChildren().clear();
-        entrataAnchor(boxDinamica,1200,0);
+        if (registroAcquisti.getRegistroAcquistate().isEmpty())
+            avvisoVisivo("Errore","bc0000");
+        else {
+            bFisso.setText("Cancella vendita");
+            boxDinamica.getChildren().clear();
+            entrataAnchor(boxDinamica, 1200, 0);
 
-        // ScrollPane
-        ScrollPane scrollPane = new ScrollPane();
-        scrollPane.setLayoutX(14.0);
-        scrollPane.setLayoutY(60.0);
-        scrollPane.setPrefSize(590.0, 387.0);
-        scrollPane.setStyle("-fx-background-color: #F4FAFF;");
+            // ScrollPane
+            ScrollPane scrollPane = new ScrollPane();
+            scrollPane.setLayoutX(14.0);
+            scrollPane.setLayoutY(60.0);
+            scrollPane.setPrefSize(590.0, 387.0);
+            scrollPane.setStyle("-fx-background-color: #F4FAFF;");
 
-        // VBox inside ScrollPane
-        VBox vBox = new VBox();
-        vBox.setPrefSize(572.0, 408.0);
-        vBox.setStyle("-fx-background-color: #F4FAFF;");
+            // VBox inside ScrollPane
+            VBox vBox = new VBox();
+            vBox.setPrefSize(572.0, 408.0);
+            vBox.setStyle("-fx-background-color: #F4FAFF;");
 
-        for (int i=0;i<inventarioAuto.getInventario().size();i++){
-            HBox hBox1 = aggiungiRigaCancellazione(registroAcquisti.getRegistroAcquistate().get(i),registroAcquisti.getRegistroAcquirenti().get(i),vBox);
-            Pane spazio = new Pane();
-            spazio.setPrefSize(572.0, 50.0);
+            for (int i = 0; i < inventarioAuto.getInventario().size(); i++) {
+                HBox hBox1 = aggiungiRigaCancellazione(registroAcquisti.getRegistroAcquistate().get(i), registroAcquisti.getRegistroAcquirenti().get(i), vBox);
+                Pane spazio = new Pane();
+                spazio.setPrefSize(572.0, 50.0);
 
-            vBox.getChildren().addAll(hBox1, spazio);
+                vBox.getChildren().addAll(hBox1, spazio);
+            }
+            Pane spazio2 = new Pane(); //Spaziatura aggiuntiva
+            spazio2.setPrefSize(572.0, 50.0);
+            vBox.getChildren().add(spazio2);
+
+            scrollPane.setContent(vBox);
+
+            Label labelTitolo = new Label("Seleziona l'acquisto da cancellare: ");
+            labelTitolo.setLayoutX(22.0);
+            labelTitolo.setLayoutY(14.0);
+            labelTitolo.setPrefSize(575.0, 31.0);
+            labelTitolo.setStyle("-fx-font-family: 'Pivot Classic'; -fx-font-size: 24.0;");
+            // Aggiunta degli elementi al pannello
+            boxDinamica.getChildren().addAll(labelTitolo, scrollPane);
         }
-        Pane spazio2 = new Pane(); //Spaziatura aggiuntiva
-        spazio2.setPrefSize(572.0, 50.0);
-        vBox.getChildren().add(spazio2);
-
-        scrollPane.setContent(vBox);
-
-        Label labelTitolo = new Label("Seleziona l'acquisto da cancellare: ");
-        labelTitolo.setLayoutX(22.0);
-        labelTitolo.setLayoutY(14.0);
-        labelTitolo.setPrefSize(575.0, 31.0);
-        labelTitolo.setStyle("-fx-font-family: 'Pivot Classic'; -fx-font-size: 24.0;");
-        // Aggiunta degli elementi al pannello
-        boxDinamica.getChildren().addAll(labelTitolo,scrollPane);
     }
     @FXML
     private void mostraMeglioCancellato(VBox vbox,Auto auto){
@@ -785,7 +781,7 @@ public class ConcessionarioAcquistiController {
         tipoLabel.setPrefSize(100, 28.0);
         tipoLabel.setStyle("-fx-font-family: 'Pivot Classic'; -fx-font-size: 14.0;");
 
-        pane1.getChildren().addAll(modello, marca, alimentazioneLabel, vediMeglio, tipoLabel);
+        pane1.getChildren().addAll(acquirente,infoAcquirente,modello, marca, alimentazioneLabel, vediMeglio,selezionaButton, tipoLabel);
 
         hBox.getChildren().addAll(pane1);
 
@@ -1109,7 +1105,7 @@ public class ConcessionarioAcquistiController {
         tipoLabel.setPrefSize(100, 28.0);
         tipoLabel.setStyle("-fx-font-family: 'Pivot Classic'; -fx-font-size: 14.0;");
 
-        pane1.getChildren().addAll(modello, marca, alimentazioneLabel, vediMeglio, tipoLabel);
+        pane1.getChildren().addAll(acquirente,infoAcquirente,modello, marca, alimentazioneLabel, vediMeglio, tipoLabel);
 
         hBox.getChildren().addAll(pane1);
 
@@ -1298,42 +1294,47 @@ public class ConcessionarioAcquistiController {
     public void mostraTutto(){
         boxDinamica.setVisible(true);
         boxDinamica.setDisable(false);
-        bFisso.setText("Vendite effettuate");
-        boxDinamica.getChildren().clear();
-        entrataAnchor(boxDinamica,1200,0);
 
-        // ScrollPane
-        ScrollPane scrollPane = new ScrollPane();
-        scrollPane.setLayoutX(14.0);
-        scrollPane.setLayoutY(60.0);
-        scrollPane.setPrefSize(590.0, 387.0);
-        scrollPane.setStyle("-fx-background-color: #F4FAFF;");
+        if (registroAcquisti.getRegistroAcquistate().isEmpty())
+            avvisoVisivo("Errore","bc0000");
+        else {
+            bFisso.setText("Vendite effettuate");
+            boxDinamica.getChildren().clear();
+            entrataAnchor(boxDinamica, 1200, 0);
 
-        // VBox inside ScrollPane
-        VBox vBox = new VBox();
-        vBox.setPrefSize(572.0, 408.0);
-        vBox.setStyle("-fx-background-color: #F4FAFF;");
+            // ScrollPane
+            ScrollPane scrollPane = new ScrollPane();
+            scrollPane.setLayoutX(14.0);
+            scrollPane.setLayoutY(60.0);
+            scrollPane.setPrefSize(590.0, 387.0);
+            scrollPane.setStyle("-fx-background-color: #F4FAFF;");
 
-        for (int i=0;i<inventarioAuto.getInventario().size();i++){
-            HBox hBox1 = aggiungiRigaSolaVista(registroAcquisti.getRegistroAcquistate().get(i),registroAcquisti.getRegistroAcquirenti().get(i),vBox);
-            Pane spazio = new Pane();
-            spazio.setPrefSize(572.0, 50.0);
+            // VBox inside ScrollPane
+            VBox vBox = new VBox();
+            vBox.setPrefSize(572.0, 408.0);
+            vBox.setStyle("-fx-background-color: #F4FAFF;");
 
-            vBox.getChildren().addAll(hBox1, spazio);
+            for (int i = 0; i < inventarioAuto.getInventario().size(); i++) {
+                HBox hBox1 = aggiungiRigaSolaVista(registroAcquisti.getRegistroAcquistate().get(i), registroAcquisti.getRegistroAcquirenti().get(i), vBox);
+                Pane spazio = new Pane();
+                spazio.setPrefSize(572.0, 50.0);
+
+                vBox.getChildren().addAll(hBox1, spazio);
+            }
+            Pane spazio2 = new Pane(); //Spaziatura aggiuntiva
+            spazio2.setPrefSize(572.0, 50.0);
+            vBox.getChildren().add(spazio2);
+
+            scrollPane.setContent(vBox);
+
+            Label labelTitolo = new Label("Tutti gli acquisti effettuati: ");
+            labelTitolo.setLayoutX(22.0);
+            labelTitolo.setLayoutY(14.0);
+            labelTitolo.setPrefSize(575.0, 31.0);
+            labelTitolo.setStyle("-fx-font-family: 'Pivot Classic'; -fx-font-size: 24.0;");
+            // Aggiunta degli elementi al pannello
+            boxDinamica.getChildren().addAll(labelTitolo, scrollPane);
         }
-        Pane spazio2 = new Pane(); //Spaziatura aggiuntiva
-        spazio2.setPrefSize(572.0, 50.0);
-        vBox.getChildren().add(spazio2);
-
-        scrollPane.setContent(vBox);
-
-        Label labelTitolo = new Label("Tutti gli acquisti effettuati: ");
-        labelTitolo.setLayoutX(22.0);
-        labelTitolo.setLayoutY(14.0);
-        labelTitolo.setPrefSize(575.0, 31.0);
-        labelTitolo.setStyle("-fx-font-family: 'Pivot Classic'; -fx-font-size: 24.0;");
-        // Aggiunta degli elementi al pannello
-        boxDinamica.getChildren().addAll(labelTitolo,scrollPane);
     }
     @FXML
     private void mostraMeglio(VBox vbox,Auto auto){
@@ -1470,7 +1471,7 @@ public class ConcessionarioAcquistiController {
         tipoLabel.setPrefSize(100, 28.0);
         tipoLabel.setStyle("-fx-font-family: 'Pivot Classic'; -fx-font-size: 14.0;");
 
-        pane1.getChildren().addAll(modello, marca, alimentazioneLabel, vediMeglio, tipoLabel);
+        pane1.getChildren().addAll(acquirente,infoAcquirente,modello, marca, alimentazioneLabel, vediMeglio, tipoLabel);
 
         hBox.getChildren().addAll(pane1);
 

@@ -75,30 +75,18 @@ public class ClienteController {
     }
     @FXML
     private void setInfoPrivato(){
-        boolean validitaInfo=true;
+        boolean isOk=true;
         privato.setNomeUtente(t1.getText());
         privato.setLocazione(t2.getText());
-        if (privato.isEmailValida(t3.getText()))
-            privato.setEmail(t3.getText());
-        else
-            validitaInfo=false;
-        if (privato.isNumeroValido(t4.getText()))
-            privato.setTelefono(t4.getText());
-        else
-            validitaInfo=false;
-        if (privato.isValidCodiceFiscale(t7.getText()))
-            privato.isValidCodiceFiscale(t7.getText());
-        else
-            validitaInfo=false;
-        if (privato.isValidCIE(t6.getText()))
-            privato.setNumeroCie(t6.getText());
-        else
-            validitaInfo=false;
-        if (privato.isValidNomeCognome(t5.getText()))
-            privato.setNomeCognome(t5.getText());
-        else
-            validitaInfo=false;
-        if (!validitaInfo)
+        privato.setEmail(t3.getText());
+        privato.setTelefono(t4.getText());
+        privato.setCodiceFiscale(t7.getText());
+        privato.setNumeroCie(t6.getText());
+        privato.setNomeCognome(t5.getText());
+
+        //TODO: INSERIRE CONTROLLO
+
+        if (!isOk)
             avvisoVisivo("Errore","bc0000");
         else {
             setAutoPrivato();
@@ -106,8 +94,10 @@ public class ClienteController {
     }
     @FXML
     private void setAutoPrivato(){
+        vistaInfo.getChildren().clear();
+
         // Label 1
-        Label label1 = new Label("Seleziona una delle seguenti opzioni ed inserisci:");
+        Label label1 = new Label("Inserisci le informazioni richieste:");
         label1.setLayoutX(18);
         label1.setLayoutY(21);
         label1.setPrefSize(579, 39);
@@ -117,14 +107,14 @@ public class ClienteController {
         // Other Labels, TextFields, and Components
         Label marcaLabel = new Label("Inserisci la marca");
         marcaLabel.setLayoutX(19);
-        marcaLabel.setLayoutY(96);
+        marcaLabel.setLayoutY(45);
         marcaLabel.setPrefSize(260, 43);
         marcaLabel.setFont(new Font("Pivot Classic", 14));
         vistaInfo.getChildren().add(marcaLabel);
 
         TextField marca = new TextField();
         marca.setLayoutX(19);
-        marca.setLayoutY(143);
+        marca.setLayoutY(92);
         marca.setPrefSize(260, 12);
         marca.setPromptText("Fiat");
         marca.setStyle("-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-border-image-width: 1.4; " +
@@ -134,14 +124,14 @@ public class ClienteController {
 
         Label modelloLabel = new Label("Inserisci il modello");
         modelloLabel.setLayoutX(19);
-        modelloLabel.setLayoutY(165);
+        modelloLabel.setLayoutY(120);
         modelloLabel.setPrefSize(260, 43);
         modelloLabel.setFont(new Font("Pivot Classic", 14));
         vistaInfo.getChildren().add(modelloLabel);
 
         TextField modello = new TextField();
         modello.setLayoutX(19);
-        modello.setLayoutY(212);
+        modello.setLayoutY(167);
         modello.setPrefSize(260, 12);
         modello.setPromptText("Panda");
         modello.setStyle("-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-border-image-width: 1.4; " +
@@ -149,33 +139,16 @@ public class ClienteController {
         modello.setFont(new Font("Goudy Old Style", 12));
         vistaInfo.getChildren().add(modello);
 
-        Label prezzoLabel = new Label("Inserisci il prezzo");
-        prezzoLabel.setLayoutX(19);
-        prezzoLabel.setLayoutY(234);
-        prezzoLabel.setPrefSize(260, 43);
-        prezzoLabel.setFont(new Font("Pivot Classic", 14));
-        vistaInfo.getChildren().add(prezzoLabel);
-
-        TextField prezzo = new TextField();
-        prezzo.setLayoutX(19);
-        prezzo.setLayoutY(281);
-        prezzo.setPrefSize(260, 12);
-        prezzo.setPromptText("19.000");
-        prezzo.setStyle("-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-border-image-width: 1.4; " +
-                "-fx-border-radius: 12 0 12 0; -fx-background-radius: 12 0 12 0;");
-        prezzo.setFont(new Font("Goudy Old Style", 12));
-        vistaInfo.getChildren().add(prezzo);
-
         Label alimentazioneLabel = new Label("Inserisci l'alimentazione");
         alimentazioneLabel.setLayoutX(19);
-        alimentazioneLabel.setLayoutY(303);
+        alimentazioneLabel.setLayoutY(195);
         alimentazioneLabel.setPrefSize(260, 43);
         alimentazioneLabel.setFont(new Font("Pivot Classic", 14));
         vistaInfo.getChildren().add(alimentazioneLabel);
 
         ChoiceBox<String> alimentazione = new ChoiceBox<>();
         alimentazione.setLayoutX(19);
-        alimentazione.setLayoutY(346);
+        alimentazione.setLayoutY(242);
         alimentazione.setPrefSize(260, 26);
         alimentazione.setStyle("-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-border-image-width: 1.4; " +
                 "-fx-border-radius: 12 0 12 0; -fx-background-radius: 12 0 12 0;");
@@ -184,14 +157,14 @@ public class ClienteController {
 
         Label coloreLabel = new Label("Inserisci il colore");
         coloreLabel.setLayoutX(19);
-        coloreLabel.setLayoutY(372);
+        coloreLabel.setLayoutY(270);
         coloreLabel.setPrefSize(260, 43);
         coloreLabel.setFont(new Font("Pivot Classic", 14));
         vistaInfo.getChildren().add(coloreLabel);
 
         TextField colore = new TextField();
         colore.setLayoutX(19);
-        colore.setLayoutY(413);
+        colore.setLayoutY(317);
         colore.setPrefSize(260, 12);
         colore.setPromptText("Rosso");
         colore.setStyle("-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-border-image-width: 1.4; " +
@@ -263,25 +236,30 @@ public class ClienteController {
                 "-fx-border-width: 1.2; -fx-border-radius: 32;");
         inserisciButton.setFont(new Font("Pivot Classic", 12));
         inserisciButton.setTextFill(javafx.scene.paint.Color.web("#30323d"));
+        cambioColorePassaggioMouse(inserisciButton,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
         inserisciButton.setOnAction(e->{
-            privato.setAutoAttuale(new AutoUsata(marca.getText(),modello.getText(),Double.parseDouble(prezzo.getText()),Integer.parseInt(annoImmatricolazione.getText()), alimentazione.getValue(), Integer.parseInt(chilometraggio.getText()), colore.getText(), descrizione.getText()));
+            try {
+                privato.setAutoAttuale(new AutoUsata(marca.getText(),modello.getText(),0.0,Integer.parseInt(annoImmatricolazione.getText()), alimentazione.getValue(), Integer.parseInt(chilometraggio.getText()), colore.getText(), descrizione.getText()));
+                avvisoVisivo("Ottimo", "42f58d");
+                vistaInfo.getChildren().clear();
+                bFisso.setText("Benvenuto/a "+privato.getNomeUtente());
+                entrataAnchor(vistaInfo,0,1200);
 
-            avvisoVisivo("Ottimo", "42f58d");
-            vistaInfo.getChildren().clear();
-            bFisso.setText("Benvenuto/a "+privato.getNomeUtente());
-            entrataAnchor(vistaInfo,0,1200);
+                vistaInfo.setVisible(false);
+                vistaInfo.setDisable(true);
+                bIndietro.setVisible(true);
+                bAvanti.setVisible(true);
+                vistaPrincipale.setDisable(false);
+                vistaPrincipale.setVisible(true);
+                entrataAnchor(vistaPrincipale,-300,0);
+                schermataPrincipale(inventarioAuto.getInventario());
 
-            vistaInfo.setVisible(false);
-            vistaInfo.setDisable(true);
-            bIndietro.setVisible(true);
-            bAvanti.setVisible(true);
-            vistaPrincipale.setDisable(false);
-            vistaPrincipale.setVisible(true);
-            entrataAnchor(vistaPrincipale,-300,0);
-            schermataPrincipale(inventarioAuto.getInventario());
+                cambioColorePassaggioMouse(b1,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
+                cambioColorePassaggioMouse(b11,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
+            } catch (Exception ex) {
+                avvisoVisivo("Errore","bc0000");
+            }
 
-            cambioColorePassaggioMouse(b1,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
-            cambioColorePassaggioMouse(b11,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
         });
 
         vistaInfo.getChildren().add(inserisciButton);
@@ -538,7 +516,6 @@ public class ClienteController {
     }
     @FXML
     private void mostraMeglio(VBox vbox, Auto auto, ArrayList<Auto> autoVisibili){
-        System.out.println("Mostra meglio");
         vbox.getChildren().clear();
 
         HBox hbox1 = new HBox();

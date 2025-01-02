@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #F1E4F3; -fx-border-color: #F4FAFF; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pratica724.ClienteController">
+    <children>
+        <AnchorPane prefHeight="103.0" prefWidth="900.0" style="-fx-background-color: #30323D; -fx-background-radius: 0 0 28 28; -fx-border-color: #F4FAFF; -fx-border-radius: 0 0 28 28; -fx-border-width: 2;">
+            <ImageView fitHeight="73.0" fitWidth="230.0" layoutX="127.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@img/scritta.png" />
+                </image>
+            </ImageView>
+            <ImageView fitHeight="127.0" fitWidth="127.0" layoutY="-37.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@img/logo.png" />
+                </image>
+            </ImageView>
+            <Button fx:id="bFisso" layoutX="463.0" layoutY="27.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="409.0" style="-fx-background-color: #F4FAFF; -fx-background-radius: 16; -fx-border-color: #30323D; -fx-border-radius: 16; -fx-border-width: 2;" text="Inserisci le informazioni">
+                <font>
+                    <Font name="Pivot Classic" size="24.0" />
+                </font></Button>
+        </AnchorPane>
+        <AnchorPane fx:id="vistaInfo" layoutX="107.0" layoutY="115.0" prefHeight="467.0" prefWidth="686.0" style="-fx-background-color: #F4FAFF; -fx-background-radius: 16; -fx-border-color: #30323D; -fx-border-radius: 16; -fx-border-width: 1.5;">
+            <children>
+                <Button fx:id="bInserisci" layoutX="360.0" layoutY="348.0" mnemonicParsing="false" onAction="#setInfoPrivato" prefHeight="54.0" prefWidth="260.0" style="-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;" text="Continua" textFill="#30323d">
+                    <font>
+                        <Font name="Pivot Classic" size="24.0" />
+                    </font>
+                </Button>
+                <Label layoutX="25.0" layoutY="14.0" prefHeight="43.0" prefWidth="260.0" text="Inserisci il tuo nome utente">
+                    <font>
+                        <Font name="Pivot Classic" size="14.0" />
+                    </font></Label>
+                <TextField fx:id="t1" layoutX="25.0" layoutY="68.0" prefHeight="12.0" prefWidth="260.0" promptText="AutoPixel" style="-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-border-image-width: 1.4; -fx-border-radius: 12 0 12 0; -fx-background-radius: 12 0 12 0;">
+                    <font>
+                        <Font name="Goudy Old Style" size="12.0" />
+                    </font></TextField>
+                <Label layoutX="358.0" layoutY="208.0" prefHeight="43.0" prefWidth="260.0" text="Inserisci il tuo codice fiscale">
+                    <font>
+                        <Font name="Pivot Classic" size="14.0" />
+                    </font></Label>
+                <TextField fx:id="t7" layoutX="358.0" layoutY="262.0" prefHeight="12.0" prefWidth="260.0" promptText="RSSMRA85M01H501Z" style="-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-border-image-width: 1.4; -fx-border-radius: 12 0 12 0; -fx-background-radius: 12 0 12 0;">
+                    <font>
+                        <Font name="Goudy Old Style" size="12.0" />
+                    </font></TextField>
+                <Label layoutX="358.0" layoutY="107.0" prefHeight="43.0" prefWidth="260.0" text="Inserisci il numero CIE">
+                    <font>
+                        <Font name="Pivot Classic" size="14.0" />
+                    </font></Label>
+                <TextField fx:id="t6" layoutX="358.0" layoutY="161.0" prefHeight="12.0" prefWidth="260.0" promptText="CA 9498474" style="-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-border-image-width: 1.4; -fx-border-radius: 12 0 12 0; -fx-background-radius: 12 0 12 0;">
+                    <font>
+                        <Font name="Goudy Old Style" size="12.0" />
+                    </font></TextField>
+                <Label layoutX="358.0" layoutY="16.0" prefHeight="43.0" prefWidth="260.0" text="Inserisci il tuo nome e cognome">
+                    <font>
+                        <Font name="Pivot Classic" size="14.0" />
+                    </font></Label>
+                <TextField fx:id="t5" layoutX="358.0" layoutY="70.0" prefHeight="12.0" prefWidth="260.0" promptText="Mario Rossi" style="-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-border-image-width: 1.4; -fx-border-radius: 12 0 12 0; -fx-background-radius: 12 0 12 0;">
+                    <font>
+                        <Font name="Goudy Old Style" size="12.0" />
+                    </font></TextField>
+                <Label layoutX="25.0" layoutY="309.0" prefHeight="43.0" prefWidth="260.0" text="Inserisci il tuo numero di telefono">
+                    <font>
+                        <Font name="Pivot Classic" size="14.0" />
+                    </font></Label>
+                <TextField fx:id="t4" layoutX="25.0" layoutY="363.0" prefHeight="12.0" prefWidth="260.0" promptText="+39 333 666 0000" style="-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-border-image-width: 1.4; -fx-border-radius: 12 0 12 0; -fx-background-radius: 12 0 12 0;">
+                    <font>
+                        <Font name="Goudy Old Style" size="12.0" />
+                    </font></TextField>
+                <Label layoutX="25.0" layoutY="206.0" prefHeight="43.0" prefWidth="260.0" text="Inserisci la tua e-mail">
+                    <font>
+                        <Font name="Pivot Classic" size="14.0" />
+                    </font></Label>
+                <TextField fx:id="t3" layoutX="25.0" layoutY="260.0" prefHeight="12.0" prefWidth="260.0" promptText="giorgione@gmail.com" style="-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-border-image-width: 1.4; -fx-border-radius: 12 0 12 0; -fx-background-radius: 12 0 12 0;">
+                    <font>
+                        <Font name="Goudy Old Style" size="12.0" />
+                    </font></TextField>
+                <Label layoutX="25.0" layoutY="105.0" prefHeight="43.0" prefWidth="260.0" text="Inserisci la tua locazione">
+                    <font>
+                        <Font name="Pivot Classic" size="14.0" />
+                    </font></Label>
+                <TextField fx:id="t2" layoutX="25.0" layoutY="159.0" prefHeight="12.0" prefWidth="260.0" promptText="Bergamo, It" style="-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-border-image-width: 1.4; -fx-border-radius: 12 0 12 0; -fx-background-radius: 12 0 12 0;">
+                    <font>
+                        <Font name="Goudy Old Style" size="12.0" />
+                    </font></TextField>
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="vistaPrincipale" layoutX="107.0" layoutY="115.0" prefHeight="454.0" prefWidth="686.0" style="-fx-background-color: #F4FAFF; -fx-background-radius: 16; -fx-border-color: #30323D; -fx-border-radius: 16; -fx-border-width: 1.5;" visible="false">
+            <children>
+                <Button fx:id="b1" layoutX="555.0" layoutY="14.0" mnemonicParsing="false" onAction="#ricercaAuto" prefHeight="28.0" prefWidth="116.0" style="-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;" text="Cerca" textFill="#30323d">
+                    <font>
+                        <Font name="Pivot Classic" size="16.0" />
+                    </font>
+                </Button>
+            <Button fx:id="b11" layoutX="430.0" layoutY="14.0" mnemonicParsing="false" onAction="#filtra" prefHeight="28.0" prefWidth="116.0" style="-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;" text="Filtra" textFill="#30323d">
+               <font>
+                  <Font name="Pivot Classic" size="16.0" />
+               </font>
+            </Button>
+            <AnchorPane fx:id="vistaDinamica" layoutX="24.0" layoutY="66.0" prefHeight="380.0" prefWidth="643.0" />
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="vistaConfronti" disable="true" layoutX="107.0" layoutY="115.0" prefHeight="454.0" prefWidth="686.0" style="-fx-background-color: #F4FAFF; -fx-background-radius: 16; -fx-border-color: #30323D; -fx-border-radius: 16; -fx-border-width: 1.5;" visible="false">
+         <children>
+         </children></AnchorPane>
+        <Button fx:id="bAvanti" layoutX="821.0" layoutY="300.0" mnemonicParsing="false" onAction="#vediVistaAcquisti" prefHeight="52.0" prefWidth="52.0" style="-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;" text="&gt;" textFill="#30323d" visible="false">
+            <font>
+                <Font name="Goudy Old Style" size="24.0" />
+            </font>
+        </Button>
+        <Button fx:id="bIndietro" disable="true" layoutX="26.0" layoutY="300.0" mnemonicParsing="false" onAction="#vediVistaArchivio" prefHeight="52.0" prefWidth="52.0" style="-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;" text="&lt;" textFill="#30323d" visible="false">
+            <font>
+                <Font name="Goudy Old Style" size="24.0" />
+            </font>
+        </Button>
+    </children>
+</AnchorPane>

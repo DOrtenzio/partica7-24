@@ -48,6 +48,7 @@ public class HelloApplication extends Application {
         clienteController.setFirstView(true);
         clienteController.setConcessionario(concessionario);
         clienteController.setPrivato(privato);
+        clienteController.initializeAComando();
 
         clienteStage.show();
     }

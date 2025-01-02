@@ -248,7 +248,7 @@ public class ConcessionarioInventarioView {
 
         Label labelDescrizione = new Label("Descrizione (Opzionale) :");
         labelDescrizione.setLayoutX(301);
-        labelDescrizione.setLayoutY(114);
+        labelDescrizione.setLayoutY(130);
         labelDescrizione.setPrefSize(260, 20);
         labelDescrizione.toFront();
         labelDescrizione.setFont(new Font("Pivot Classic", 14));
@@ -477,10 +477,14 @@ public class ConcessionarioInventarioView {
         inserisciButton.setFont(new Font("Pivot Classic", 12));
         inserisciButton.setTextFill(javafx.scene.paint.Color.web("#30323d"));
         inserisciButton.setOnAction(e->{
-            if (usata.isSelected()){
-                concessionario.getInventario().aggiungiAuto(new AutoUsata(marca.getText(),modello.getText(),Double.parseDouble(prezzo.getText()),Integer.parseInt(annoImmatricolazione.getText()),alimentazione.getValue(),Integer.parseInt(chilometraggio.getText()),colore.getText(),descrizione.getText()));
-            }else{
-                concessionario.getInventario().aggiungiAuto(new AutoKm0(marca.getText(),modello.getText(),Double.parseDouble(prezzo.getText()),Integer.parseInt(annoImmatricolazione.getText()), alimentazione.getValue(), colore.getText(), descrizione.getText(),Integer.parseInt(chilometraggio.getText())));
+            try {
+                if (usata.isSelected()){
+                    concessionario.getInventario().aggiungiAuto(new AutoUsata(marca.getText(),modello.getText(),Double.parseDouble(prezzo.getText()),Integer.parseInt(annoImmatricolazione.getText()),alimentazione.getValue(),Integer.parseInt(chilometraggio.getText()),colore.getText(),descrizione.getText()));
+                }else{
+                    concessionario.getInventario().aggiungiAuto(new AutoKm0(marca.getText(),modello.getText(),Double.parseDouble(prezzo.getText()),Integer.parseInt(annoImmatricolazione.getText()), alimentazione.getValue(), colore.getText(), descrizione.getText(),Integer.parseInt(chilometraggio.getText())));
+                }
+            } catch (Exception ex) {
+                avvisoVisivo("Errore","bc0000");
             }
             avvisoVisivo("Ottimo", "42f58d");
             boxDinamica.getChildren().clear();
@@ -671,54 +675,58 @@ public class ConcessionarioInventarioView {
         inserisciButton.setTextFill(javafx.scene.paint.Color.web("#30323d"));
         cambioColorePassaggioMouse(inserisciButton,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
         inserisciButton.setOnAction(e->{
-            if (special.isSelected()){
-                concessionario.getInventario().aggiungiAuto(new AutoSpeciali(marca.getText(),modello.getText(),Double.parseDouble(prezzo.getText()),alimentazione.getValue(),colore.getText(),descrizione.getText(),aggiunte.getText(),Double.parseDouble(incentivo.getText())));
-                avvisoVisivo("Ottimo", "42f58d");
-                boxDinamica.getChildren().clear();
-                bFisso.setText("Benvenuto/a "+concessionario.getNomeUtente());
-                entrataAnchor(boxDinamica,0,1200);
-                boxDinamica.setVisible(false);
-                boxDinamica.setDisable(true);
-            }else{
-                boxDinamica.getChildren().clear();
-
-                Label larghLabel = new Label("Inserisci la larghezza massi di una carrozzina ");
-                larghLabel.setLayoutX(19);
-                larghLabel.setLayoutY(96);
-                larghLabel.setPrefSize(300, 43);
-                larghLabel.setFont(new Font("Pivot Classic", 14));
-                boxDinamica.getChildren().add(larghLabel);
-
-                TextField largh = new TextField();
-                largh.setLayoutX(19);
-                largh.setLayoutY(143);
-                largh.setPrefSize(260, 12);
-                largh.setPromptText("150 cm");
-                largh.setStyle("-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-border-image-width: 1.4; " +
-                        "-fx-border-radius: 12 0 12 0; -fx-background-radius: 12 0 12 0;");
-                largh.setFont(new Font("Goudy Old Style", 12));
-                boxDinamica.getChildren().add(largh);
-
-                // Button
-                Button inserisciButton2 = new Button("Conferma");
-                inserisciButton2.setLayoutX(330);
-                inserisciButton2.setLayoutY(143);
-                inserisciButton2.setPrefSize(219, 39);
-                inserisciButton2.setStyle("-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; " +
-                        "-fx-border-width: 1.2; -fx-border-radius: 32;");
-                inserisciButton2.setFont(new Font("Pivot Classic", 12));
-                inserisciButton2.setTextFill(javafx.scene.paint.Color.web("#30323d"));
-                cambioColorePassaggioMouse(inserisciButton2,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
-                inserisciButton2.setOnAction(event->{
-                    concessionario.getInventario().aggiungiAuto(new AutoDisabili(marca.getText(),modello.getText(),Double.parseDouble(prezzo.getText()),alimentazione.getValue(),colore.getText(),descrizione.getText(),aggiunte.getText(),Double.parseDouble(incentivo.getText()),Double.parseDouble(largh.getText())));
+            try {
+                if (special.isSelected()){
+                    concessionario.getInventario().aggiungiAuto(new AutoSpeciali(marca.getText(),modello.getText(),Double.parseDouble(prezzo.getText()),alimentazione.getValue(),colore.getText(),descrizione.getText(),aggiunte.getText(),Double.parseDouble(incentivo.getText())));
                     avvisoVisivo("Ottimo", "42f58d");
                     boxDinamica.getChildren().clear();
                     bFisso.setText("Benvenuto/a "+concessionario.getNomeUtente());
                     entrataAnchor(boxDinamica,0,1200);
                     boxDinamica.setVisible(false);
                     boxDinamica.setDisable(true);
-                });
-                boxDinamica.getChildren().add(inserisciButton2);
+                }else{
+                    boxDinamica.getChildren().clear();
+
+                    Label larghLabel = new Label("Inserisci la larghezza massi di una carrozzina ");
+                    larghLabel.setLayoutX(19);
+                    larghLabel.setLayoutY(96);
+                    larghLabel.setPrefSize(300, 43);
+                    larghLabel.setFont(new Font("Pivot Classic", 14));
+                    boxDinamica.getChildren().add(larghLabel);
+
+                    TextField largh = new TextField();
+                    largh.setLayoutX(19);
+                    largh.setLayoutY(143);
+                    largh.setPrefSize(260, 12);
+                    largh.setPromptText("150 cm");
+                    largh.setStyle("-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-border-image-width: 1.4; " +
+                            "-fx-border-radius: 12 0 12 0; -fx-background-radius: 12 0 12 0;");
+                    largh.setFont(new Font("Goudy Old Style", 12));
+                    boxDinamica.getChildren().add(largh);
+
+                    // Button
+                    Button inserisciButton2 = new Button("Conferma");
+                    inserisciButton2.setLayoutX(330);
+                    inserisciButton2.setLayoutY(143);
+                    inserisciButton2.setPrefSize(219, 39);
+                    inserisciButton2.setStyle("-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; " +
+                            "-fx-border-width: 1.2; -fx-border-radius: 32;");
+                    inserisciButton2.setFont(new Font("Pivot Classic", 12));
+                    inserisciButton2.setTextFill(javafx.scene.paint.Color.web("#30323d"));
+                    cambioColorePassaggioMouse(inserisciButton2,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
+                    inserisciButton2.setOnAction(event->{
+                        concessionario.getInventario().aggiungiAuto(new AutoDisabili(marca.getText(),modello.getText(),Double.parseDouble(prezzo.getText()),alimentazione.getValue(),colore.getText(),descrizione.getText(),aggiunte.getText(),Double.parseDouble(incentivo.getText()),Double.parseDouble(largh.getText())));
+                        avvisoVisivo("Ottimo", "42f58d");
+                        boxDinamica.getChildren().clear();
+                        bFisso.setText("Benvenuto/a "+concessionario.getNomeUtente());
+                        entrataAnchor(boxDinamica,0,1200);
+                        boxDinamica.setVisible(false);
+                        boxDinamica.setDisable(true);
+                    });
+                    boxDinamica.getChildren().add(inserisciButton2);
+                }
+            } catch (Exception ex) {
+                avvisoVisivo("Errore","bc0000");
             }
         });
 
@@ -992,7 +1000,6 @@ public class ConcessionarioInventarioView {
     }
     @FXML
     private void mostraMeglioCancellato(VBox vbox,Auto auto){
-        System.out.println("Mostra meglio");
         vbox.getChildren().clear();
 
         HBox hbox1 = new HBox();
@@ -1196,7 +1203,6 @@ public class ConcessionarioInventarioView {
         cambioColorePassaggioMouse(button,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
         button.setOnAction(e->{
             try {
-                System.out.println(marca.getText()+" "+modello.getText()+" "+Integer.parseInt(annoImmatricolazione.getText())+" "+alimentazione.getValue()+" "+colore.getText());
                 mostraAutoTrovate(inventarioAuto.ricerca(marca.getText(),modello.getText(),Integer.parseInt(annoImmatricolazione.getText()),alimentazione.getValue(),colore.getText()));
             } catch (Exception ex) {
                 avvisoVisivo("Errore","bc0000");
