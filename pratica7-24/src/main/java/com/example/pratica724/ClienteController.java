@@ -8,11 +8,7 @@ import com.example.pratica724.utenti.Concessionario;
 import com.example.pratica724.utenti.Privato;
 import javafx.animation.PauseTransition;
 import javafx.animation.TranslateTransition;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -21,10 +17,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -32,7 +26,7 @@ public class ClienteController {
     @FXML
     private AnchorPane vistaPrincipale, vistaConfronti,vistaInfo,vistaDinamica;
     @FXML
-    private Button bIndietro,bAvanti,bInserisci,bFisso,b1,b11;
+    private Button bIndietro,bAvanti,bInserisci,bFisso, b8, b9;
     @FXML
     private TextField t1,t2,t3,t4,t5,t6,t7;
 
@@ -75,21 +69,33 @@ public class ClienteController {
     }
     @FXML
     private void setInfoPrivato(){
-        boolean isOk=true;
         privato.setNomeUtente(t1.getText());
         privato.setLocazione(t2.getText());
-        privato.setEmail(t3.getText());
-        privato.setTelefono(t4.getText());
-        privato.setCodiceFiscale(t7.getText());
-        privato.setNumeroCie(t6.getText());
-        privato.setNomeCognome(t5.getText());
-
-        //TODO: INSERIRE CONTROLLO
-
-        if (!isOk)
+        if (!privato.isEmailValida(t3.getText()))
             avvisoVisivo("Errore","bc0000");
-        else {
-            setAutoPrivato();
+        else{
+            privato.setEmail(t3.getText());
+            if (!privato.isNumeroValido(t4.getText()))
+                avvisoVisivo("Errore","bc0000");
+            else{
+                privato.setTelefono(t4.getText());
+                if (!privato.isValidNomeCognome(t5.getText()))
+                    avvisoVisivo("Errore","bc0000");
+                else {
+                    privato.setNomeCognome(t5.getText());
+                    if (!privato.isValidCIE(t6.getText()))
+                        avvisoVisivo("Errore","bc0000");
+                    else {
+                        privato.setNumeroCie(t6.getText());
+                        if (!privato.isValidCodiceFiscale(t7.getText()))
+                            avvisoVisivo("Errore","bc0000");
+                        else {
+                            privato.setCodiceFiscale(t7.getText());
+                            setAutoPrivato();
+                        }
+                    }
+                }
+            }
         }
     }
     @FXML
@@ -254,8 +260,8 @@ public class ClienteController {
                 entrataAnchor(vistaPrincipale,-300,0);
                 schermataPrincipale(inventarioAuto.getInventario());
 
-                cambioColorePassaggioMouse(b1,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
-                cambioColorePassaggioMouse(b11,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
+                cambioColorePassaggioMouse(b8,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
+                cambioColorePassaggioMouse(b9,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
             } catch (Exception ex) {
                 avvisoVisivo("Errore","bc0000");
             }
@@ -268,19 +274,19 @@ public class ClienteController {
     //Schermata principale
     @FXML
     public void schermataPrincipale(ArrayList<Auto> autoVisibili){
-        bFisso.setText("Rimuovi un'auto");
+        bFisso.setText("Ecco le nostre auto");
         vistaDinamica.getChildren().clear();
 
         // ScrollPane
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setLayoutX(14.0);
         scrollPane.setLayoutY(60.0);
-        scrollPane.setPrefSize(590.0, 387.0);
+        scrollPane.setPrefSize(570, 390);
         scrollPane.setStyle("-fx-background-color: #F4FAFF;");
 
         // VBox inside ScrollPane
         VBox vBox = new VBox();
-        vBox.setPrefSize(572.0, 408.0);
+        vBox.setPrefSize(570, 375);
         vBox.setStyle("-fx-background-color: #F4FAFF;");
 
         if (autoVisibili.size()%2==0){
@@ -512,7 +518,7 @@ public class ClienteController {
     private void aggiungiAiPreferiti(Auto auto){
         privato.aggiungiAutoPreferite(auto);
         avvisoVisivo("Inserita", "42f58d");
-        bFisso.setText("Benvenuto/a "+concessionario.getNomeUtente());
+        bFisso.setText("Benvenuto/a "+privato.getNomeUtente());
     }
     @FXML
     private void mostraMeglio(VBox vbox, Auto auto, ArrayList<Auto> autoVisibili){
@@ -581,7 +587,7 @@ public class ClienteController {
         label3.setPrefHeight(121.0);
         label3.setPrefWidth(572.0);
         label3.setWrapText(true);
-        label3.setFont(Font.font("Goudy Old Style", 12.0));
+        label3.setFont(Font.font("Goudy Old Style", 7.0));
 
         vbox.getChildren().addAll(hbox1,hbox2,label2,label3);
     }
@@ -677,6 +683,7 @@ public class ClienteController {
 
             schermataPrincipale(autoFiltrate);
         });
+        cambioColorePassaggioMouse(inserisciFiltri,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
 
         Button cancellaFiltri = new Button("Cancella filtri");
         cancellaFiltri.setLayoutX(173.0);
@@ -689,6 +696,8 @@ public class ClienteController {
             Arrays.fill(filtriSelezionati,false);
             schermataPrincipale(inventarioAuto.getInventario());
         });
+        cambioColorePassaggioMouse(cancellaFiltri,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
+
 
         // Add all elements to the root
         vistaDinamica.getChildren().addAll(label, nuove, usate, km0, speciali, disabili, inserisciFiltri, cancellaFiltri);
@@ -880,14 +889,14 @@ public class ClienteController {
         labelTitolo.setStyle("-fx-font-family: 'Pivot Classic'; -fx-font-size: 24.0;");
 
         Button button = new Button("<----");
-        button.setLayoutX(275.0);
+        button.setLayoutX(300.0);
         button.setLayoutY(14.0);
         button.setPrefSize(200, 31);
-        button.setStyle("-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; " +
+        button.setStyle("-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-background-radius: 32; " +
                 "-fx-border-width: 1.2; -fx-border-radius: 32;");
         button.setFont(new Font("Pivot Classic", 12));
         button.setTextFill(javafx.scene.paint.Color.web("#30323d"));
-        cambioColorePassaggioMouse(button,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
+        cambioColorePassaggioMouse(button,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
         button.setOnAction(e->{
             schermataPrincipale(inventarioAuto.getInventario());
         });
@@ -1118,7 +1127,7 @@ public class ClienteController {
 
     //carosello
     @FXML
-    private void vediVistaAcquisti(){
+    private void vediVistaPreferiti(){
         vistaPrincipale.setVisible(false);
         vistaPrincipale.setDisable(true);
 
@@ -1128,9 +1137,10 @@ public class ClienteController {
         entrataAnchor(vistaConfronti,-300,0);
         bAvanti.setDisable(true);
         bIndietro.setDisable(false);
+        inserimentoPreferiti();
     }
     @FXML
-    private void vediVistaArchivio(){
+    private void vediVistaPrincipale(){
         vistaConfronti.setVisible(false);
         vistaConfronti.setDisable(true);
 
@@ -1265,8 +1275,8 @@ public class ClienteController {
         Label modello = new Label(auto1.getModello());
         modello.setLayoutX(14.0);
         modello.setLayoutY(14.0);
-        modello.setPrefSize(185, 22);
-        modello.setStyle("-fx-font-family: 'Pivot Classic'; -fx-font-size: 120.0;");
+        modello.setPrefSize(185, 28);
+        modello.setStyle("-fx-font-family: 'Pivot Classic'; -fx-font-size: 28.0;");
 
         Label marca = new Label(auto1.getMarca());
         marca.setLayoutX(14.0);
@@ -1467,7 +1477,7 @@ public class ClienteController {
         PauseTransition pausa = new PauseTransition(Duration.seconds(3));
         pausa.setOnFinished(e -> {
             bFisso.setStyle("-fx-background-color: #F4FAFF; -fx-background-radius: 16; -fx-border-color: #30323D; -fx-border-radius: 16; -fx-border-width: 2;");
-            bFisso.setText("Inserisci informazioni");
+            bFisso.setText("Benvenuto/a");
         });
         pausa.play();
     }

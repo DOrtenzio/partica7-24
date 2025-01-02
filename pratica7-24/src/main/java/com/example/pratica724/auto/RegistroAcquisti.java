@@ -51,16 +51,16 @@ public class RegistroAcquisti {
             if (marchio != null && !auto.getMarca().equalsIgnoreCase(marchio)) {
                 corrisponde = false;
             }
-            if (modello != null && !auto.getModello().equalsIgnoreCase(modello)) {
+            else if (modello != null && !auto.getModello().equalsIgnoreCase(modello)) {
                 corrisponde = false;
             }
-            if (colore != null && !auto.getColore().equalsIgnoreCase(colore)) {
+            else if (colore != null && !auto.getColore().equalsIgnoreCase(colore)) {
                 corrisponde = false;
             }
-            if (annoImmatricolazione != 0 && auto.getAnnoImmatricolazione()!=annoImmatricolazione ) {
+            else if (annoImmatricolazione != 0 && auto.getAnnoImmatricolazione()!=annoImmatricolazione ) {
                 corrisponde = false;
             }
-            if (alimentazione != null && auto.getAlimentazione().equalsIgnoreCase(alimentazione) ) {
+            else if (!auto.getAlimentazione().equalsIgnoreCase(alimentazione) ) {
                 corrisponde = false;
             }
 

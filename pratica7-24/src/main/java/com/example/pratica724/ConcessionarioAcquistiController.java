@@ -561,13 +561,31 @@ public class ConcessionarioAcquistiController {
 
         privato.setNomeUtente(nomeUtente);
         privato.setLocazione(locazione);
-        privato.setEmail(email);
-        privato.setTelefono(telefono);
-        privato.setNumeroCie(numeroCie);
-        privato.setNomeCognome(nomeCognome);
-        privato.setCodiceFiscale(codiceFiscale);
-
-        //TODO: INSERIRE CONTROLLO
+        if (!privato.isEmailValida(email))
+            avvisoVisivo("Errore","bc0000");
+        else{
+            privato.setEmail(email);
+            if (!privato.isNumeroValido(telefono))
+                avvisoVisivo("Errore","bc0000");
+            else{
+                privato.setTelefono(telefono);
+                if (!privato.isValidNomeCognome(nomeCognome))
+                    avvisoVisivo("Errore","bc0000");
+                else {
+                    privato.setNomeCognome(nomeCognome);
+                    if (!privato.isValidCIE(numeroCie))
+                        avvisoVisivo("Errore","bc0000");
+                    else {
+                        privato.setNumeroCie(numeroCie);
+                        if (!privato.isValidCodiceFiscale(codiceFiscale))
+                            avvisoVisivo("Errore","bc0000");
+                        else {
+                            privato.setCodiceFiscale(codiceFiscale);
+                        }
+                    }
+                }
+            }
+        }
 
         if (!isOk) {
             avvisoVisivo("Errore", "bc0000");

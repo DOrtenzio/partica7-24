@@ -65,19 +65,12 @@ public class Privato extends Utente{
         }
         return codiceFiscale.matches("^[A-Z0-9]{16}$");
     }
-    public boolean isValidNomeCognome(String nomeCognome){
+    public boolean isValidNomeCognome(String nomeCognome) {
         if (nomeCognome == null || nomeCognome.isBlank()) {
             return false;
         }
-        String regex = "^[A-Z][a-zàèéìòù'\\\\-]*([\\\\s][A-Z][a-zàèéìòù'\\\\-]*)*$";
-        /* REGOLE REGEX SE NON LE RICORDI
+        String regex = "^[A-Z][a-zàèéìòù'\\-]*([\\s][A-Z][a-zàèéìòù'\\-]*)*$";
 
-        ^[A-Z]: Il nome o cognome deve iniziare con una lettera maiuscola.
-        [a-zàèéìòù'\\-]*: Dopo la maiuscola, può seguire una sequenza di lettere minuscole, incluse lettere accentate (àèéìòù), apostrofo ('), o trattino (-).
-        ([\\s][A-Z][a-zàèéìòù'\\-]*)*: Se ci sono altre parole (es. nei cognomi composti come "De Luca"), ognuna deve iniziare con una maiuscola seguita da lettere minuscole e caratteri validi.
-        $: La stringa deve terminare qui (non sono ammessi caratteri aggiuntivi dopo).
-
-        */
         return nomeCognome.matches(regex);
     }
 
