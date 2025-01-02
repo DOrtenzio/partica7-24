@@ -1,5 +1,7 @@
 package com.example.pratica724.auto;
 
+import java.time.LocalDate;
+
 public class Auto implements Comparable<Auto>{
     private String marca, modello, alimentazione,colore,descrizione;
     private double prezzo;

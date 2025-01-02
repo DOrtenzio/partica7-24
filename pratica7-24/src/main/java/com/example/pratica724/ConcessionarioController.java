@@ -175,7 +175,7 @@ public class ConcessionarioController {
 
     @FXML
     private void cambiaArchivioView(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("concessionarioArchivio-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("concessionarioAcquisti-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 900, 600);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 

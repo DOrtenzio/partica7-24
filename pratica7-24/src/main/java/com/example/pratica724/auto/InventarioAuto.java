@@ -1,5 +1,6 @@
 package com.example.pratica724.auto;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -118,5 +119,56 @@ public class InventarioAuto {
                 autoDisabili.add((AutoDisabili) auto);
         }
         return autoDisabili;
+    }
+    public double scontoPermuta(double valoreAutoNuova, AutoUsata autoDaVendere){
+        if (autoDaVendere.getAnnoImmatricolazione() > LocalDate.now().getYear()-2){ //Se auto è degli ultimi due anni
+            if (autoDaVendere.getAlimentazione().equalsIgnoreCase("benzina") || autoDaVendere.getAlimentazione().equalsIgnoreCase("disel")){
+                if (autoDaVendere.getChilometraggio()<50000)
+                    return valoreAutoNuova*(0.1+0.01+0.0003);
+                else
+                    return valoreAutoNuova*(0.1+0.01+0.00003);
+            }else{
+                if (autoDaVendere.getChilometraggio()<50000)
+                    return valoreAutoNuova*(0.1+0.05+0.0003);
+                else
+                    return valoreAutoNuova*(0.1+0.05+0.00003);
+            }
+        } else if (autoDaVendere.getAnnoImmatricolazione() > LocalDate.now().getYear()-5) {
+            if (autoDaVendere.getAlimentazione().equalsIgnoreCase("benzina") || autoDaVendere.getAlimentazione().equalsIgnoreCase("disel")){
+                if (autoDaVendere.getChilometraggio()<50000)
+                    return valoreAutoNuova*(0.06+0.001+0.0003);
+                else
+                    return valoreAutoNuova*(0.06+0.001+0.00003);
+            }else{
+                if (autoDaVendere.getChilometraggio()<50000)
+                    return valoreAutoNuova*(0.06+0.005+0.0003);
+                else
+                    return valoreAutoNuova*(0.06+0.005+0.00003);
+            }
+        } else if (autoDaVendere.getAnnoImmatricolazione() > LocalDate.now().getYear()-10) {
+            if (autoDaVendere.getAlimentazione().equalsIgnoreCase("benzina") || autoDaVendere.getAlimentazione().equalsIgnoreCase("disel")){
+                if (autoDaVendere.getChilometraggio()<50000)
+                    return valoreAutoNuova*(0.04+0.0001+0.0003);
+                else
+                    return valoreAutoNuova*(0.04+0.0001+0.00003);
+            }else{
+                if (autoDaVendere.getChilometraggio()<50000)
+                    return valoreAutoNuova*(0.04+0.0005+0.0003);
+                else
+                    return valoreAutoNuova*(0.04+0.0005+0.00003);
+            }
+        }else {
+            if (autoDaVendere.getAlimentazione().equalsIgnoreCase("benzina") || autoDaVendere.getAlimentazione().equalsIgnoreCase("disel")){
+                if (autoDaVendere.getChilometraggio()<50000)
+                    return valoreAutoNuova*(0.01+0.00001+0.0003);
+                else
+                    return valoreAutoNuova*(0.01+0.00001+0.00003);
+            }else{
+                if (autoDaVendere.getChilometraggio()<50000)
+                    return valoreAutoNuova*(0.01+0.00005+0.0003);
+                else
+                    return valoreAutoNuova*(0.01+0.00005+0.00003);
+            }
+        }
     }
 }

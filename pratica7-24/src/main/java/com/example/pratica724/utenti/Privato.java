@@ -2,9 +2,12 @@ package com.example.pratica724.utenti;
 
 import com.example.pratica724.auto.*;
 
+import java.util.ArrayList;
+
 public class Privato extends Utente{
     private String nomeCognome,codiceFiscale,numeroCie;
-    public Auto autoAttuale;
+    private Auto autoAttuale;
+    private ArrayList<Auto> autoPreferite;
 
     //Costruttore
     public Privato(String nomeUtente, String locazione, String email, String telefono, String nomeCognome, String numeroCie, Auto autoAttuale,String codiceFiscale) {
@@ -13,7 +16,7 @@ public class Privato extends Utente{
         setNumeroCie(numeroCie);
         setCodiceFiscale(codiceFiscale);
         this.autoAttuale = autoAttuale;
-
+        this.autoPreferite=new ArrayList<Auto>();
     }
 
     //get e set
@@ -40,8 +43,11 @@ public class Privato extends Utente{
     }
     public Auto getAutoAttuale() { return autoAttuale; }
     public void setAutoAttuale(Auto autoAttuale) { this.autoAttuale = autoAttuale; }
+    public ArrayList<Auto> getAutoPreferite() { return autoPreferite; }
 
     //metodi
+    public void aggiungiAutoPreferite(Auto auto){ this.autoPreferite.add(auto); }
+    public void rimuoviAutoPreferite(Auto auto){ this.autoPreferite.remove(auto); }
     @Override
     public String toString(){ return "Privato: "+this.nomeCognome+super.toString()+"\n Codice Fiscale: "+this.codiceFiscale+"\n Numero CIE: "+this.codiceFiscale+"\n Auto attuale: "+this.autoAttuale.toString(); }
     @Override
