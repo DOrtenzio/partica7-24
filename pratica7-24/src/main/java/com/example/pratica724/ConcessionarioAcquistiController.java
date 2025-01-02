@@ -135,6 +135,14 @@ public class ConcessionarioAcquistiController {
         marchioLabel.setPrefSize(107.0, 17.0);
         marchioLabel.setStyle("-fx-font-family: 'Goudy Old Style'; -fx-font-size: 12.0;");
 
+        ImageView imageView = new ImageView();
+        imageView.setLayoutX(100);
+        imageView.setLayoutY(43);
+        imageView.setFitWidth(86);
+        imageView.setFitHeight(80);
+        imageView.setPreserveRatio(true);
+        imageView.setImage(new Image(ConcessionarioAcquistiController.class.getResource("/com/example/pratica724/img/logo.png").toString()));
+
         Label alimentazioneLabel = new Label(auto1.getAlimentazione());
         alimentazioneLabel.setLayoutX(183.0);
         alimentazioneLabel.setLayoutY(20.0);
@@ -174,7 +182,7 @@ public class ConcessionarioAcquistiController {
         tipoLabel.setPrefSize(116.0, 28.0);
         tipoLabel.setStyle("-fx-font-family: 'Pivot Classic'; -fx-font-size: 16.0;");
 
-        pane1.getChildren().addAll(modelloLabel, marchioLabel, alimentazioneLabel, selezionaButton, vediMeglio, tipoLabel);
+        pane1.getChildren().addAll(modelloLabel, marchioLabel,imageView, alimentazioneLabel, selezionaButton, vediMeglio, tipoLabel);
 
         // Second Pane (spacer)
         Pane pane2 = new Pane();
@@ -197,6 +205,13 @@ public class ConcessionarioAcquistiController {
         modelloLabel1.setPrefSize(148.0, 29.0);
         modelloLabel1.setStyle("-fx-font-family: 'Pivot Classic'; -fx-font-size: 14.0;");
 
+        ImageView imageView1 = new ImageView();
+        imageView1.setLayoutX(100);
+        imageView1.setLayoutY(43);
+        imageView1.setFitWidth(86);
+        imageView1.setFitHeight(80);
+        imageView1.setPreserveRatio(true);
+        imageView1.setImage(new Image(ConcessionarioAcquistiController.class.getResource("/com/example/pratica724/img/logo.png").toString()));
 
         Label alimentazioneLabel1 = new Label(auto2.getAlimentazione());
         alimentazioneLabel1.setLayoutX(183.0);
@@ -237,7 +252,7 @@ public class ConcessionarioAcquistiController {
         tipoLabel1.setPrefSize(116.0, 28.0);
         tipoLabel1.setStyle("-fx-font-family: 'Pivot Classic'; -fx-font-size: 16.0;");
 
-        pane3.getChildren().addAll(modelloLabel1,marchioLabel1,alimentazioneLabel1,tipoLabel1,selezionaButton1,vediMeglio2);
+        pane3.getChildren().addAll(modelloLabel1,marchioLabel1,imageView1,alimentazioneLabel1,tipoLabel1,selezionaButton1,vediMeglio2);
         hBox.getChildren().addAll(pane1, pane2, pane3);
 
         return hBox;
@@ -756,6 +771,14 @@ public class ConcessionarioAcquistiController {
         marca.setPrefSize(185, 22);
         marca.setStyle("-fx-font-family: 'Goudy Old Style'; -fx-font-size: 15.0;");
 
+        ImageView imageView = new ImageView();
+        imageView.setLayoutX(100);
+        imageView.setLayoutY(43);
+        imageView.setFitWidth(86);
+        imageView.setFitHeight(80);
+        imageView.setPreserveRatio(true);
+        imageView.setImage(new Image(ConcessionarioAcquistiController.class.getResource("/com/example/pratica724/img/logo.png").toString()));
+
         Label alimentazioneLabel = new Label(auto1.getAlimentazione());
         alimentazioneLabel.setLayoutX(461.0);
         alimentazioneLabel.setLayoutY(14.0);
@@ -801,7 +824,7 @@ public class ConcessionarioAcquistiController {
         tipoLabel.setPrefSize(100, 28.0);
         tipoLabel.setStyle("-fx-font-family: 'Pivot Classic'; -fx-font-size: 14.0;");
 
-        pane1.getChildren().addAll(acquirente,infoAcquirente,modello, marca, alimentazioneLabel, vediMeglio,selezionaButton, tipoLabel);
+        pane1.getChildren().addAll(acquirente,infoAcquirente,modello, marca,imageView, alimentazioneLabel, vediMeglio,selezionaButton, tipoLabel);
 
         hBox.getChildren().addAll(pane1);
 
@@ -1100,6 +1123,14 @@ public class ConcessionarioAcquistiController {
         marca.setPrefSize(185, 22);
         marca.setStyle("-fx-font-family: 'Goudy Old Style'; -fx-font-size: 15.0;");
 
+        ImageView imageView = new ImageView();
+        imageView.setLayoutX(100);
+        imageView.setLayoutY(43);
+        imageView.setFitWidth(86);
+        imageView.setFitHeight(80);
+        imageView.setPreserveRatio(true);
+        imageView.setImage(new Image(ConcessionarioAcquistiController.class.getResource("/com/example/pratica724/img/logo.png").toString()));
+
         Label alimentazioneLabel = new Label(auto1.getAlimentazione());
         alimentazioneLabel.setLayoutX(461.0);
         alimentazioneLabel.setLayoutY(14.0);
@@ -1125,7 +1156,7 @@ public class ConcessionarioAcquistiController {
         tipoLabel.setPrefSize(100, 28.0);
         tipoLabel.setStyle("-fx-font-family: 'Pivot Classic'; -fx-font-size: 14.0;");
 
-        pane1.getChildren().addAll(acquirente,infoAcquirente,modello, marca, alimentazioneLabel, vediMeglio, tipoLabel);
+        pane1.getChildren().addAll(acquirente,infoAcquirente,modello, marca,imageView, alimentazioneLabel, vediMeglio, tipoLabel);
 
         hBox.getChildren().addAll(pane1);
 
@@ -1469,6 +1500,14 @@ public class ConcessionarioAcquistiController {
         marca.setPrefSize(185, 22);
         marca.setStyle("-fx-font-family: 'Goudy Old Style'; -fx-font-size: 15.0;");
 
+        ImageView imageView = new ImageView();
+        imageView.setLayoutX(100);
+        imageView.setLayoutY(43);
+        imageView.setFitWidth(86);
+        imageView.setFitHeight(80);
+        imageView.setPreserveRatio(true);
+        imageView.setImage(new Image(ConcessionarioAcquistiController.class.getResource("/com/example/pratica724/img/logo.png").toString()));
+
         Label alimentazioneLabel = new Label(auto1.getAlimentazione());
         alimentazioneLabel.setLayoutX(461.0);
         alimentazioneLabel.setLayoutY(14.0);
@@ -1494,7 +1533,7 @@ public class ConcessionarioAcquistiController {
         tipoLabel.setPrefSize(100, 28.0);
         tipoLabel.setStyle("-fx-font-family: 'Pivot Classic'; -fx-font-size: 14.0;");
 
-        pane1.getChildren().addAll(acquirente,infoAcquirente,modello, marca, alimentazioneLabel, vediMeglio, tipoLabel);
+        pane1.getChildren().addAll(acquirente,infoAcquirente,modello, marca,imageView, alimentazioneLabel, vediMeglio, tipoLabel);
 
         hBox.getChildren().add(pane1);
 
