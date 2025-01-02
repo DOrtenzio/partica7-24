@@ -63,8 +63,8 @@ public class Privato extends Utente{
         if (codiceFiscale == null || !codiceFiscale.matches("^[A-Z0-9]{16}$")) {  // Controllo che il codice fiscale sia lungo esattamente 16 caratteri
             return false;
         }
-
-        // Tabelle per il calcolo del carattere di controllo
+        return true;
+        /* // Tabelle per il calcolo del carattere di controllo
         int[] valoriPari = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
         int[] valoriDispari = {1, 0, 5, 7, 9, 13, 15, 17, 19, 21, 1, 0, 5, 7, 9, 13, 15, 17, 19, 21};
         String alfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -81,6 +81,7 @@ public class Privato extends Utente{
         }
         char expectedCheckChar = alfabeto.charAt(somma % 26);// Calcolo del carattere di controllo
         return codiceFiscale.charAt(15) == expectedCheckChar;// Confronta il carattere di controllo calcolato con quello presente nel codice fiscale
+        */
     }
     public boolean isValidNomeCognome(String nomeCognome){
         if (nomeCognome == null || nomeCognome.isEmpty()) {

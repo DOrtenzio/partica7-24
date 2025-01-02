@@ -248,8 +248,9 @@ public class ConcessionarioInventarioView {
 
         Label labelDescrizione = new Label("Descrizione (Opzionale) :");
         labelDescrizione.setLayoutX(301);
-        labelDescrizione.setLayoutY(148);
-        labelDescrizione.setPrefSize(260, 43);
+        labelDescrizione.setLayoutY(114);
+        labelDescrizione.setPrefSize(260, 20);
+        labelDescrizione.toFront();
         labelDescrizione.setFont(new Font("Pivot Classic", 14));
         boxDinamica.getChildren().add(labelDescrizione);
 
@@ -488,6 +489,7 @@ public class ConcessionarioInventarioView {
             boxDinamica.setVisible(false);
             boxDinamica.setDisable(true);
         });
+        cambioColorePassaggioMouse(inserisciButton,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
 
         boxDinamica.getChildren().add(inserisciButton);
     }
@@ -540,6 +542,7 @@ public class ConcessionarioInventarioView {
         modelloLabel.setLayoutX(19);
         modelloLabel.setLayoutY(165);
         modelloLabel.setPrefSize(260, 43);
+        modelloLabel.setFont(new Font("Pivot Classic", 14));
         boxDinamica.getChildren().add(modelloLabel);
 
         TextField modello = new TextField();
@@ -666,6 +669,7 @@ public class ConcessionarioInventarioView {
                 "-fx-border-width: 1.2; -fx-border-radius: 32;");
         inserisciButton.setFont(new Font("Pivot Classic", 12));
         inserisciButton.setTextFill(javafx.scene.paint.Color.web("#30323d"));
+        cambioColorePassaggioMouse(inserisciButton,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
         inserisciButton.setOnAction(e->{
             if (special.isSelected()){
                 concessionario.getInventario().aggiungiAuto(new AutoSpeciali(marca.getText(),modello.getText(),Double.parseDouble(prezzo.getText()),alimentazione.getValue(),colore.getText(),descrizione.getText(),aggiunte.getText(),Double.parseDouble(incentivo.getText())));
@@ -704,6 +708,7 @@ public class ConcessionarioInventarioView {
                         "-fx-border-width: 1.2; -fx-border-radius: 32;");
                 inserisciButton2.setFont(new Font("Pivot Classic", 12));
                 inserisciButton2.setTextFill(javafx.scene.paint.Color.web("#30323d"));
+                cambioColorePassaggioMouse(inserisciButton2,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
                 inserisciButton2.setOnAction(event->{
                     concessionario.getInventario().aggiungiAuto(new AutoDisabili(marca.getText(),modello.getText(),Double.parseDouble(prezzo.getText()),alimentazione.getValue(),colore.getText(),descrizione.getText(),aggiunte.getText(),Double.parseDouble(incentivo.getText()),Double.parseDouble(largh.getText())));
                     avvisoVisivo("Ottimo", "42f58d");
@@ -1052,7 +1057,7 @@ public class ConcessionarioInventarioView {
         label2.setFont(Font.font("Pivot Classic", 32.0));
 
         Label label3 = new Label(auto.toString());
-        label3.setPrefHeight(121.0);
+        label3.setPrefHeight(800.0);
         label3.setPrefWidth(572.0);
         label3.setWrapText(true);
         label3.setFont(Font.font("Goudy Old Style", 12.0));
@@ -1185,14 +1190,14 @@ public class ConcessionarioInventarioView {
         button.setLayoutX(19);
         button.setLayoutY(351);
         button.setPrefSize(580, 39);
-        button.setStyle("-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; " +
-                "-fx-border-width: 1.2; -fx-border-radius: 32;");
+        button.setStyle("-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
         button.setFont(new Font("Pivot Classic", 12));
         button.setTextFill(javafx.scene.paint.Color.web("#30323d"));
         cambioColorePassaggioMouse(button,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
         button.setOnAction(e->{
             try {
-                mostraAutoTrovate(concessionario.getInventario().ricerca(marca.getText(),modello.getText(),Integer.parseInt(annoImmatricolazione.getText()),alimentazione.getValue(),colore.getText()));
+                System.out.println(marca.getText()+" "+modello.getText()+" "+Integer.parseInt(annoImmatricolazione.getText())+" "+alimentazione.getValue()+" "+colore.getText());
+                mostraAutoTrovate(inventarioAuto.ricerca(marca.getText(),modello.getText(),Integer.parseInt(annoImmatricolazione.getText()),alimentazione.getValue(),colore.getText()));
             } catch (Exception ex) {
                 avvisoVisivo("Errore","bc0000");
             }
@@ -1207,50 +1212,55 @@ public class ConcessionarioInventarioView {
         boxDinamica.getChildren().clear();
         entrataAnchor(boxDinamica,1200,0);
 
-        // ScrollPane
-        ScrollPane scrollPane = new ScrollPane();
-        scrollPane.setLayoutX(14.0);
-        scrollPane.setLayoutY(60.0);
-        scrollPane.setPrefSize(590.0, 387.0);
-        scrollPane.setStyle("-fx-background-color: #F4FAFF;");
+        if (autoTrovate == null || autoTrovate.isEmpty()) {
+            avvisoVisivo("Nessuna auto trovata", "bc0000");
+            return;
+        }else {
+            // ScrollPane
+            ScrollPane scrollPane = new ScrollPane();
+            scrollPane.setLayoutX(14.0);
+            scrollPane.setLayoutY(60.0);
+            scrollPane.setPrefSize(590.0, 387.0);
+            scrollPane.setStyle("-fx-background-color: #F4FAFF;");
 
-        // VBox inside ScrollPane
-        VBox vBox = new VBox();
-        vBox.setPrefSize(572.0, 408.0);
-        vBox.setStyle("-fx-background-color: #F4FAFF;");
+            // VBox inside ScrollPane
+            VBox vBox = new VBox();
+            vBox.setPrefSize(572.0, 408.0);
+            vBox.setStyle("-fx-background-color: #F4FAFF;");
 
-        if (autoTrovate.size()%2==0){
-            for (int i=0;i<autoTrovate.size();i+=2){
-                HBox hBox1 = aggiungiRigaVistaRicerca(inventarioAuto.getInventario().get(i),autoTrovate.get(i+1),vBox,autoTrovate);
-                Pane spazio = new Pane();
-                spazio.setPrefSize(572.0, 50.0);
+            if (autoTrovate.size() % 2 == 0) {
+                for (int i = 0; i < autoTrovate.size(); i += 2) {
+                    HBox hBox1 = aggiungiRigaVistaRicerca(autoTrovate.get(i), autoTrovate.get(i + 1), vBox, autoTrovate);
+                    Pane spazio = new Pane();
+                    spazio.setPrefSize(572.0, 50.0);
 
-                vBox.getChildren().addAll(hBox1, spazio);
+                    vBox.getChildren().addAll(hBox1, spazio);
+                }
+            } else {
+                for (int i = 0; i < autoTrovate.size() - 1; i += 2) {
+                    HBox hBox1 = aggiungiRigaVistaRicerca(autoTrovate.get(i), autoTrovate.get(i + 1), vBox, autoTrovate);
+                    Pane spazio = new Pane();
+                    spazio.setPrefSize(572.0, 50.0);
+
+                    vBox.getChildren().addAll(hBox1, spazio);
+                }
+                HBox hBox2 = aggiungiRigaSolaVistaRicerca(autoTrovate.getLast(), vBox, autoTrovate);
+                vBox.getChildren().add(hBox2);
             }
-        }else{
-            for (int i=0;i<autoTrovate.size()-1;i+=2){
-                HBox hBox1 = aggiungiRigaVistaRicerca(autoTrovate.get(i),autoTrovate.get(i+1),vBox,autoTrovate);
-                Pane spazio = new Pane();
-                spazio.setPrefSize(572.0, 50.0);
+            Pane spazio2 = new Pane(); //Spaziatura aggiuntiva
+            spazio2.setPrefSize(572.0, 50.0);
+            vBox.getChildren().add(spazio2);
 
-                vBox.getChildren().addAll(hBox1, spazio);
-            }
-            HBox hBox2 = aggiungiRigaSolaVistaRicerca(autoTrovate.getLast(),vBox,autoTrovate);
-            vBox.getChildren().add(hBox2);
+            scrollPane.setContent(vBox);
+
+            Label labelTitolo = new Label("Ecco le auto trovate: ");
+            labelTitolo.setLayoutX(22.0);
+            labelTitolo.setLayoutY(14.0);
+            labelTitolo.setPrefSize(575.0, 31.0);
+            labelTitolo.setStyle("-fx-font-family: 'Pivot Classic'; -fx-font-size: 24.0;");
+            // Aggiunta degli elementi al pannello
+            boxDinamica.getChildren().addAll(labelTitolo, scrollPane);
         }
-        Pane spazio2 = new Pane(); //Spaziatura aggiuntiva
-        spazio2.setPrefSize(572.0, 50.0);
-        vBox.getChildren().add(spazio2);
-
-        scrollPane.setContent(vBox);
-
-        Label labelTitolo = new Label("Ecco le auto trovate: ");
-        labelTitolo.setLayoutX(22.0);
-        labelTitolo.setLayoutY(14.0);
-        labelTitolo.setPrefSize(575.0, 31.0);
-        labelTitolo.setStyle("-fx-font-family: 'Pivot Classic'; -fx-font-size: 24.0;");
-        // Aggiunta degli elementi al pannello
-        boxDinamica.getChildren().addAll(labelTitolo,scrollPane);
     }
 
     @FXML
@@ -1473,7 +1483,7 @@ public class ConcessionarioInventarioView {
         label2.setFont(Font.font("Pivot Classic", 32.0));
 
         Label label3 = new Label(auto.toString());
-        label3.setPrefHeight(121.0);
+        label3.setPrefHeight(800.0);
         label3.setPrefWidth(572.0);
         label3.setWrapText(true);
         label3.setFont(Font.font("Goudy Old Style", 12.0));
@@ -1602,7 +1612,7 @@ public class ConcessionarioInventarioView {
         label2.setFont(Font.font("Pivot Classic", 32.0));
 
         Label label3 = new Label(auto.toString());
-        label3.setPrefHeight(121.0);
+        label3.setPrefHeight(800.0);
         label3.setPrefWidth(572.0);
         label3.setWrapText(true);
         label3.setFont(Font.font("Goudy Old Style", 12.0));
@@ -1740,7 +1750,7 @@ public class ConcessionarioInventarioView {
 
         Button vediMeglio = new Button("+");
         vediMeglio.setLayoutX(127.0);
-        vediMeglio.setLayoutY(85.0);
+        vediMeglio.setLayoutY(122.0);
         vediMeglio.setPrefSize(55.0, 28.0);
         vediMeglio.setStyle("-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
         cambioColorePassaggioMouse(vediMeglio,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");

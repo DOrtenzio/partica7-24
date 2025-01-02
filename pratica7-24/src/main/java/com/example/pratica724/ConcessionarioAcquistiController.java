@@ -26,7 +26,7 @@ import java.util.ArrayList;
 
 public class ConcessionarioAcquistiController {
     @FXML
-    private Button b1,b2,b3,b4,b5,bFisso;
+    private Button b1,b2,b3,b4,b5,b6,bFisso;
     @FXML
     private AnchorPane boxDinamica,boxPulsanti,root;
 
@@ -49,6 +49,7 @@ public class ConcessionarioAcquistiController {
         cambioColorePassaggioMouse(b3,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
         cambioColorePassaggioMouse(b4,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
         cambioColorePassaggioMouse(b5,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
+        cambioColorePassaggioMouse(b6,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
 
 
         entrataAnchor(boxPulsanti,-300,0);
@@ -526,7 +527,7 @@ public class ConcessionarioAcquistiController {
         vistaInfo.getChildren().add(label7);
 
         TextField codiceFiscale = new TextField();
-        codiceFiscale.setPromptText("Mario rossi");
+        codiceFiscale.setPromptText("RSSMRA85C15H501Z");
         codiceFiscale.setLayoutX(358.0);
         codiceFiscale.setLayoutY(262.0);
         codiceFiscale.setPrefSize(260.0, 12.0);
@@ -555,6 +556,7 @@ public class ConcessionarioAcquistiController {
 
         privato.setNomeUtente(nomeUtente);
         privato.setLocazione(locazione);
+
         if (privato.isEmailValida(email))
             privato.setEmail(email);
         else

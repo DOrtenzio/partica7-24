@@ -40,6 +40,7 @@ public class ConcessionarioController {
         }else{
             vistaInfo.setDisable(true);
             vistaInfo.setVisible(false);
+            bFisso.setText("Benvenuto/a "+concessionario.getNomeUtente());
 
             bIndietro.setVisible(true);
             bAvanti.setVisible(true);
@@ -47,6 +48,8 @@ public class ConcessionarioController {
             vistaArchivio.setVisible(true);
             entrataAnchor(vistaArchivio,-300,0);
         }
+        cambioColorePassaggioMouse(b1,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
+        cambioColorePassaggioMouse(b2,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
         cambioColorePassaggioMouse(bIndietro,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
         cambioColorePassaggioMouse(bAvanti,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
         cambioColorePassaggioMouse(bInserisci,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
@@ -169,7 +172,6 @@ public class ConcessionarioController {
         stage.setScene(scene);
 
         ConcessionarioInventarioView concessionarioInventarioView=fxmlLoader.getController();
-        System.out.println(concessionarioInventarioView);
         concessionarioInventarioView.setConcessionario(this.concessionario);
     }
 
@@ -182,5 +184,8 @@ public class ConcessionarioController {
         stage.setResizable(false);
         stage.getIcons().add(new Image(HelloApplication.class.getResource("/com/example/pratica724/img/logo.png").toString()));
         stage.setScene(scene);
+
+        ConcessionarioAcquistiController concessionarioAcquistiController=fxmlLoader.getController();
+        concessionarioAcquistiController.setConcessionario(concessionario);
     }
 }
