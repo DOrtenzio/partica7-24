@@ -26,13 +26,14 @@ public class ConcessionarioController {
     private TextField t1,t2,t3,t4,t5,t6,t7,t8;
 
     private Concessionario concessionario;
-    private boolean isFirstView=true;
+    private boolean isFirstView;
 
     //set informazioni
     public void setConcessionario(Concessionario concessionario){ this.concessionario=concessionario; }
+    public void setFirstView( boolean isFirstView ) { this.isFirstView=isFirstView; }
 
     @FXML
-    private void initialize(){
+    public void initializeAComando(){
         if (isFirstView) {
             entrataAnchor(vistaInfo, -300, 0);
             isFirstView=false;
@@ -157,7 +158,6 @@ public class ConcessionarioController {
     }
 
     //Cambio schermata
-
     @FXML
     private void cambiaInventarioView(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("concessionarioInventario-view.fxml"));

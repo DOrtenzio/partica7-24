@@ -4,7 +4,11 @@ import com.example.pratica724.auto.*;
 import com.example.pratica724.utenti.Concessionario;
 import javafx.animation.PauseTransition;
 import javafx.animation.TranslateTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -13,13 +17,15 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ConcessionarioInventarioView {
     @FXML
-    private Button b1,b2,b3,b4,bFisso;
+    private Button b1,b2,b3,b4,b5,bFisso;
     @FXML
     private AnchorPane boxDinamica,boxPulsanti;
 
@@ -39,6 +45,8 @@ public class ConcessionarioInventarioView {
         cambioColorePassaggioMouse(b2,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
         cambioColorePassaggioMouse(b3,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
         cambioColorePassaggioMouse(b4,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
+        cambioColorePassaggioMouse(b5,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
+
 
         entrataAnchor(boxPulsanti,-300,0);
     }
@@ -1066,7 +1074,6 @@ public class ConcessionarioInventarioView {
             avvisoVisivo("Errore","bc0000");
         }
     }
-
     @FXML
     private void ricercaAutoInserimento(){
         // Label 1
@@ -1789,5 +1796,22 @@ public class ConcessionarioInventarioView {
         translateTransition.setCycleCount(1);
         translateTransition.setAutoReverse(false);
         translateTransition.play();
+    }
+
+    //cambio schermata
+    @FXML
+    private void tornaHome(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("concessionario-view.fxml"));
+
+        Scene scene = new Scene(fxmlLoader.load(), 900, 600);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setResizable(false);
+        stage.getIcons().add(new Image(HelloApplication.class.getResource("/com/example/pratica724/img/logo.png").toString()));
+        stage.setScene(scene);
+
+        ConcessionarioController concessionarioController=fxmlLoader.getController();
+        concessionarioController.setConcessionario(this.concessionario);
+        concessionarioController.setFirstView(false);
+        concessionarioController.initializeAComando();
     }
 }

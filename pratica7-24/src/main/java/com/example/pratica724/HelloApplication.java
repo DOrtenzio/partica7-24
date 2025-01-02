@@ -27,6 +27,9 @@ public class HelloApplication extends Application {
         Concessionario concessionario=new Concessionario(null,null,"template","template",null,null,"template","template",inventarioAuto,registroAcquisti);
 
         concessionarioController.setConcessionario(concessionario);
+        concessionarioController.setFirstView(true);
+        concessionarioController.initializeAComando();
+
         stage.show();
     }
 

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #F1E4F3; -fx-border-color: #F4FAFF; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pratica724.ConcessionarioAcquistiController">
+    <children>
+        <AnchorPane prefHeight="103.0" prefWidth="900.0" style="-fx-background-color: #30323D; -fx-background-radius: 0 0 28 28; -fx-border-color: #F4FAFF; -fx-border-radius: 0 0 28 28; -fx-border-width: 2;">
+            <ImageView fitHeight="73.0" fitWidth="230.0" layoutX="127.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@img/scritta.png" />
+                </image>
+            </ImageView>
+            <ImageView fitHeight="127.0" fitWidth="127.0" layoutY="-37.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@img/logo.png" />
+                </image>
+            </ImageView>
+            <Button fx:id="bFisso" layoutX="463.0" layoutY="27.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="409.0" style="-fx-background-color: #F4FAFF; -fx-background-radius: 16; -fx-border-color: #30323D; -fx-border-radius: 16; -fx-border-width: 2;" text="Benvenuto/a">
+                <font>
+                    <Font name="Pivot Classic" size="24.0" />
+                </font>
+            </Button>
+        </AnchorPane>
+        <AnchorPane fx:id="boxPulsanti" layoutX="20.0" layoutY="115.0" prefHeight="454.0" prefWidth="204.0" style="-fx-background-color: #F4FAFF; -fx-background-radius: 16; -fx-border-color: #30323D; -fx-border-radius: 16; -fx-border-width: 1.5;">
+            <children>
+                <Button fx:id="b1" layoutX="14.0" layoutY="29.0" mnemonicParsing="false" onAction="#nuovaVendita" prefHeight="39.0" prefWidth="168.0" style="-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;" text="Nuova vendita" textFill="#30323d">
+                    <font>
+                        <Font name="Pivot Classic" size="12.0" />
+                    </font>
+                </Button>
+                <Button fx:id="b3" layoutX="14.0" layoutY="147.0" mnemonicParsing="false" onAction="#ricercaAuto" prefHeight="39.0" prefWidth="168.0" style="-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;" text="Ricerca auto acquistate" textFill="#30323d">
+                    <font>
+                        <Font name="Pivot Classic" size="12.0" />
+                    </font>
+                </Button>
+                <Button fx:id="b2" layoutX="14.0" layoutY="86.0" mnemonicParsing="false" onAction="#cancellaVendita" prefHeight="39.0" prefWidth="168.0" style="-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;" text="Cancella vendita" textFill="#30323d">
+                    <font>
+                        <Font name="Pivot Classic" size="12.0" />
+                    </font>
+                </Button>
+                <Button fx:id="b4" layoutX="14.0" layoutY="265.0" mnemonicParsing="false" onAction="#mostraTutto" prefHeight="39.0" prefWidth="168.0" style="-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;" text="Mostra tutto" textFill="#30323d">
+                    <font>
+                        <Font name="Pivot Classic" size="12.0" />
+                    </font>
+                </Button>
+                <Button fx:id="b5" layoutX="18.0" layoutY="389.0" mnemonicParsing="false" onAction="#tornaHome" prefHeight="39.0" prefWidth="168.0" style="-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;" text="Torna alla home" textFill="#30323d">
+                    <font>
+                        <Font name="Pivot Classic" size="12.0" />
+                    </font>
+                </Button>
+            <Button fx:id="b31" layoutX="14.0" layoutY="205.0" mnemonicParsing="false" onAction="#ricercaPrivato" prefHeight="39.0" prefWidth="168.0" style="-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;" text="Ricerca acquirenti" textFill="#30323d">
+               <font>
+                  <Font name="Pivot Classic" size="12.0" />
+               </font>
+            </Button>
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="boxDinamica" layoutX="282.0" layoutY="115.0" prefHeight="454.0" prefWidth="618.0" style="-fx-background-color: #F4FAFF; -fx-background-radius: 16 0 0 16; -fx-border-color: #30323D; -fx-border-radius: 16 0 0 16; -fx-border-width: 1.5;" visible="false" />
+    </children>
+</AnchorPane>

@@ -53,7 +53,7 @@ public class Privato extends Utente{
         return false;
     }
 
-    private boolean isValidCodiceFiscale(String codiceFiscale) { // Metodo per verificare se un codice fiscale è valido
+    public boolean isValidCodiceFiscale(String codiceFiscale) { // Metodo per verificare se un codice fiscale è valido
         if (codiceFiscale == null || !codiceFiscale.matches("^[A-Z0-9]{16}$")) {  // Controllo che il codice fiscale sia lungo esattamente 16 caratteri
             return false;
         }
@@ -76,7 +76,7 @@ public class Privato extends Utente{
         char expectedCheckChar = alfabeto.charAt(somma % 26);// Calcolo del carattere di controllo
         return codiceFiscale.charAt(15) == expectedCheckChar;// Confronta il carattere di controllo calcolato con quello presente nel codice fiscale
     }
-    private boolean isValidNomeCognome(String nomeCognome){
+    public boolean isValidNomeCognome(String nomeCognome){
         if (nomeCognome == null || nomeCognome.isEmpty()) {
             return false;
         }
@@ -93,7 +93,7 @@ public class Privato extends Utente{
     }
 
     // Metodo per verificare la validità del numero CIE
-    private boolean isValidCIE(String cie) {
+    public boolean isValidCIE(String cie) {
         if (cie == null || cie.isEmpty()) {
             return false;
         }

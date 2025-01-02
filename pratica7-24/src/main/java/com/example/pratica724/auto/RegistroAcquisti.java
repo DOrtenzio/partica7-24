@@ -40,9 +40,10 @@ public class RegistroAcquisti {
         return false;
     }
     public boolean cancellaAcquisto(Auto autoAcquistata, Privato acquirente){ return cancellaAcquirente(acquirente) && cancellaAcquistata(autoAcquistata); }
+
     //Ricerche
-    public ArrayList<Auto> ricercaAutoAcquistata(String marchio, String modello, int annoImmatricolazione, String alimentazione, String colore) {
-        ArrayList<Auto> autoRicercate = new ArrayList<>();
+    public ArrayList<Integer> ricercaAutoAcquistata(String marchio, String modello, int annoImmatricolazione, String alimentazione, String colore) {
+        ArrayList<Integer> autoRicercate = new ArrayList<>();
 
         for (Auto auto : this.registroAcquistate) {
             boolean corrisponde = true;
@@ -65,14 +66,14 @@ public class RegistroAcquisti {
 
             // Aggiungi l'auto se corrisponde a/ai criteri specificati
             if (corrisponde) {
-                autoRicercate.add(auto);
+                autoRicercate.add(registroAcquistate.indexOf(auto));
             }
         }
 
         return autoRicercate;
     }
-    public ArrayList<Privato> ricercaAcquirenti(String nomeUtente, String locazione, String email, String telefono, String nomeCognome, String numeroCie, String codiceFiscale) {
-        ArrayList<Privato> privatiRicercati = new ArrayList<>();
+    public ArrayList<Integer> ricercaAcquirenti(String nomeUtente, String locazione, String email, String telefono, String nomeCognome, String numeroCie, String codiceFiscale) {
+        ArrayList<Integer> privatiRicercati = new ArrayList<>();
 
         for (Privato privato : this.registroAcquirenti) {
             boolean corrisponde = true;
@@ -100,7 +101,7 @@ public class RegistroAcquisti {
             }
 
             if (corrisponde) {
-                privatiRicercati.add(privato);
+                privatiRicercati.add(registroAcquirenti.indexOf(privato));
             }
         }
 
