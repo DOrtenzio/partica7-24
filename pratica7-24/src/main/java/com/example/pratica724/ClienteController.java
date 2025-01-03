@@ -1621,8 +1621,8 @@ public class ClienteController {
 
                 // ImageView 2
                 ImageView im2 = new ImageView();
-                im2.setFitHeight(210.0);
-                im2.setFitWidth(339.0);
+                im2.setFitHeight(160.0);
+                im2.setFitWidth(265.0);
                 im2.setLayoutX(23.0);
                 im2.setLayoutY(220.0);
                 im2.setPickOnBounds(true);
