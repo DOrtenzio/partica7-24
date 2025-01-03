@@ -120,6 +120,31 @@ public class InventarioAuto {
         }
         return autoDisabili;
     }
+    public ArrayList<Auto> ricercaAutoAlimentazione(String alimentazione){
+        ArrayList<Auto> autoTrovate =new ArrayList<Auto>();
+        for (Auto auto : this.inventario){
+            if (auto.getAlimentazione().equalsIgnoreCase(alimentazione))
+                autoTrovate.add(auto);
+        }
+        return autoTrovate;
+    }
+    public ArrayList<Auto> ricercaMarca(String marca){
+        ArrayList<Auto> autoTrovate =new ArrayList<Auto>();
+        for (Auto auto : this.inventario){
+            if (auto.getMarca().equalsIgnoreCase(marca))
+                autoTrovate.add(auto);
+        }
+        return autoTrovate;
+    }
+    public ArrayList<Auto> ricercaModello(String modello){
+        ArrayList<Auto> autoTrovate =new ArrayList<Auto>();
+        for (Auto auto : this.inventario){
+            if (auto.getModello().equalsIgnoreCase(modello))
+                autoTrovate.add(auto);
+        }
+        return autoTrovate;
+    }
+
     public double scontoPermuta(double valoreAutoNuova, AutoUsata autoDaVendere){
         if (autoDaVendere.getAnnoImmatricolazione() > LocalDate.now().getYear()-2){ //Se auto è degli ultimi due anni
             if (autoDaVendere.getAlimentazione().equalsIgnoreCase("benzina") || autoDaVendere.getAlimentazione().equalsIgnoreCase("disel")){

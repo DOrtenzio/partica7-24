@@ -22,6 +22,8 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 public class ConcessionarioInventarioView {
     @FXML
@@ -31,6 +33,8 @@ public class ConcessionarioInventarioView {
 
     private Concessionario concessionario;
     private InventarioAuto inventarioAuto;
+    private boolean [] filtriSelezionati=new boolean[9];
+
 
     public void setConcessionario(Concessionario concessionario){
         this.concessionario=concessionario;
@@ -742,6 +746,18 @@ public class ConcessionarioInventarioView {
         boxDinamica.getChildren().clear();
         entrataAnchor(boxDinamica,1200,0);
 
+        Button filtra = new Button("Filtra");
+        filtra.setLayoutX(420);
+        filtra.setLayoutY(14);
+        filtra.setPrefSize(148, 39);
+        filtra.setStyle("-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
+        filtra.setTextFill(javafx.scene.paint.Color.web("#30323D"));
+        filtra.setFont(Font.font("Pivot Classic", 16.0));
+        filtra.setOnAction(e->{
+            filtraCancella();
+        });
+        cambioColorePassaggioMouse(filtra,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
+
         // ScrollPane
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setLayoutX(14.0);
@@ -785,7 +801,7 @@ public class ConcessionarioInventarioView {
         labelTitolo.setPrefSize(575.0, 31.0);
         labelTitolo.setStyle("-fx-font-family: 'Pivot Classic'; -fx-font-size: 24.0;");
         // Aggiunta degli elementi al pannello
-        boxDinamica.getChildren().addAll(labelTitolo,scrollPane);
+        boxDinamica.getChildren().addAll(labelTitolo,filtra,scrollPane);
     }
 
     //Metodi x cancellare
@@ -1215,6 +1231,300 @@ public class ConcessionarioInventarioView {
         box5.setDisable(false);
         box5.setVisible(true);
         entrataAnchor(box5,1200,0);
+    }
+    @FXML
+    private void filtraCancella(){
+        boxDinamica.getChildren().clear();
+
+        // Create the Label
+        Label label = new Label("Seleziona le categorie che vuoi vedere");
+        label.setLayoutX(37.0);
+        label.setLayoutY(14.0);
+        label.setPrefSize(393.0, 18.0);
+        label.setFont(Font.font("Pivot Classic", 18.0));
+
+        // Create CheckBoxes
+        CheckBox nuove = new CheckBox("Auto nuove");
+        nuove.setLayoutX(37.0);
+        nuove.setLayoutY(66.0);
+        nuove.setMnemonicParsing(false);
+        nuove.setSelected(filtriSelezionati[0]);
+        nuove.setPrefSize(150.0, 24.0);
+        nuove.setFont(Font.font("Goudy Old Style Bold", 12.0));
+
+        CheckBox usate = new CheckBox("Auto usate");
+        usate.setLayoutX(37.0);
+        usate.setLayoutY(104.0);
+        usate.setMnemonicParsing(false);
+        usate.setSelected(filtriSelezionati[1]);
+        usate.setPrefSize(150, 24.0);
+        usate.setFont(Font.font("Goudy Old Style Bold", 12.0));
+
+        CheckBox km0 = new CheckBox("Auto Km0");
+        km0.setLayoutX(37.0);
+        km0.setLayoutY(144.0);
+        km0.setMnemonicParsing(false);
+        km0.setSelected(filtriSelezionati[2]);
+        km0.setPrefSize(312.0, 24.0);
+        km0.setFont(Font.font("Goudy Old Style Bold", 12.0));
+
+        CheckBox speciali = new CheckBox("Auto speciali");
+        speciali.setLayoutX(37.0);
+        speciali.setLayoutY(180.0);
+        speciali.setMnemonicParsing(false);
+        speciali.setSelected(filtriSelezionati[3]);
+        speciali.setPrefSize(150, 24.0);
+        speciali.setFont(Font.font("Goudy Old Style Bold", 12.0));
+
+        CheckBox disabili = new CheckBox("Auto disabili");
+        disabili.setLayoutX(37.0);
+        disabili.setLayoutY(218.0);
+        disabili.setMnemonicParsing(false);
+        disabili.setSelected(filtriSelezionati[4]);
+        disabili.setPrefSize(150, 24.0);
+        disabili.setFont(Font.font("Goudy Old Style Bold", 12.0));
+
+        // Create CheckBoxes
+        CheckBox marca = new CheckBox("Marca");
+        marca.setLayoutX(160);
+        marca.setLayoutY(66.0);
+        marca.setMnemonicParsing(false);
+        marca.setSelected(filtriSelezionati[5]);
+        marca.setPrefSize(150.0, 24.0);
+        marca.setFont(Font.font("Goudy Old Style Bold", 12.0));
+
+        TextField marcatext = new TextField();
+        marcatext.setLayoutX(320);
+        marcatext.setLayoutY(66);
+        marcatext.setPrefSize(130, 12);
+        marcatext.setPromptText("Panda");
+        marcatext.setStyle("-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-border-image-width: 1.4; " +
+                "-fx-border-radius: 12 0 12 0; -fx-background-radius: 12 0 12 0;");
+        marcatext.setFont(new Font("Goudy Old Style", 12));
+        marcatext.setVisible(false);
+        marcatext.setDisable(true);
+
+        marca.setOnMouseClicked(e->{
+            if (marca.isSelected()){
+                marcatext.setVisible(true);
+                marcatext.setDisable(false);
+            }else{
+                marcatext.setVisible(false);
+                marcatext.setDisable(true);
+            }
+        });
+
+
+        CheckBox modello = new CheckBox("Modello");
+        modello.setLayoutX(160);
+        modello.setLayoutY(104.0);
+        modello.setMnemonicParsing(false);
+        modello.setSelected(filtriSelezionati[6]);
+        modello.setPrefSize(150, 24.0);
+        modello.setFont(Font.font("Goudy Old Style Bold", 12.0));
+
+        TextField modellotext = new TextField();
+        modellotext.setLayoutX(320);
+        modellotext.setLayoutY(104);
+        modellotext.setPrefSize(130, 12);
+        modellotext.setPromptText("Panda");
+        modellotext.setStyle("-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-border-image-width: 1.4; " +
+                "-fx-border-radius: 12 0 12 0; -fx-background-radius: 12 0 12 0;");
+        modellotext.setFont(new Font("Goudy Old Style", 12));
+        modellotext.setVisible(false);
+        modellotext.setDisable(true);
+
+        modello.setOnMouseClicked(e->{
+            if (modello.isSelected()){
+                modellotext.setVisible(true);
+                modellotext.setDisable(false);
+            }else{
+                modellotext.setVisible(false);
+                modellotext.setDisable(true);
+            }
+        });
+
+        CheckBox alimentazione = new CheckBox("Alimentazione");
+        alimentazione.setLayoutX(160);
+        alimentazione.setLayoutY(144.0);
+        alimentazione.setMnemonicParsing(false);
+        alimentazione.setSelected(filtriSelezionati[7]);
+        alimentazione.setPrefSize(312.0, 24.0);
+        alimentazione.setFont(Font.font("Goudy Old Style Bold", 12.0));
+
+        // ChoiceBox
+        ChoiceBox<String> alimentazioneText = new ChoiceBox<>();
+        alimentazioneText.setLayoutX(320);
+        alimentazioneText.setLayoutY(144);
+        alimentazioneText.setPrefSize(130, 26);
+        alimentazioneText.setStyle("-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-border-image-width: 1.4; " +
+                "-fx-border-radius: 12 0 12 0; -fx-background-radius: 12 0 12 0;");
+        alimentazioneText.getItems().addAll("Benzina", "Diesel", "Elettrico", "Mild-Hybrid",
+                "Full-Hybrid", "Plug-in Hybrid", "Idrogeno");
+        alimentazioneText.setVisible(false);
+        alimentazioneText.setDisable(true);
+
+        alimentazione.setOnMouseClicked(e->{
+            if (alimentazione.isSelected()){
+                alimentazioneText.setVisible(true);
+                alimentazioneText.setDisable(false);
+            }else{
+                alimentazioneText.setVisible(false);
+                alimentazioneText.setDisable(true);
+            }
+        });
+
+        CheckBox ordineCrescente = new CheckBox("Ordine crescente");
+        ordineCrescente.setLayoutX(160);
+        ordineCrescente.setLayoutY(180.0);
+        ordineCrescente.setMnemonicParsing(false);
+        ordineCrescente.setSelected(filtriSelezionati[8]);
+        ordineCrescente.setPrefSize(150, 24.0);
+        ordineCrescente.setFont(Font.font("Goudy Old Style Bold", 12.0));
+
+
+        // Create Buttons
+        Button inserisciFiltri = new Button("Inserisci filtri");
+        inserisciFiltri.setLayoutX(393.0);
+        inserisciFiltri.setLayoutY(271.0);
+        inserisciFiltri.setPrefSize(203.0, 28.0);
+        inserisciFiltri.setStyle("-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
+        inserisciFiltri.setTextFill(javafx.scene.paint.Color.web("#30323D"));
+        inserisciFiltri.setFont(Font.font("Pivot Classic", 16.0));
+        inserisciFiltri.setOnAction(e->{
+            ArrayList <Auto> autoFiltrate=new ArrayList<Auto>();
+            if (nuove.isSelected()) {
+                autoFiltrate.addAll(inventarioAuto.ricercaAutoNuove());
+                filtriSelezionati[0]=true;
+            }else
+                filtriSelezionati[0]=false;
+            if (usate.isSelected()) {
+                autoFiltrate.addAll(inventarioAuto.ricercaAutoUsate());
+                filtriSelezionati[1]=true;
+            }else
+                filtriSelezionati[1]=false;
+            if (km0.isSelected()) {
+                autoFiltrate.addAll(inventarioAuto.ricercaAutoKm0());
+                filtriSelezionati[2]=true;
+            }else
+                filtriSelezionati[2]=false;
+            if (speciali.isSelected()) {
+                autoFiltrate.addAll(inventarioAuto.ricercaAutoSpeciali());
+                filtriSelezionati[3]=true;
+            }else
+                filtriSelezionati[3]=false;
+            if (disabili.isSelected()) {
+                autoFiltrate.addAll(inventarioAuto.ricercaAutoDisabili());
+                filtriSelezionati[4]=true;
+            }else
+                filtriSelezionati[4]=false;
+            if (marca.isSelected()) {
+                autoFiltrate.addAll(inventarioAuto.ricercaMarca(marcatext.getText()));
+                filtriSelezionati[5]=true;
+            }else
+                filtriSelezionati[5]=false;
+            if (modello.isSelected()) {
+                autoFiltrate.addAll(inventarioAuto.ricercaModello(modellotext.getText()));
+                filtriSelezionati[6]=true;
+            }else
+                filtriSelezionati[6]=false;
+            if (alimentazione.isSelected()) {
+                autoFiltrate.addAll(inventarioAuto.ricercaAutoAlimentazione(alimentazioneText.getValue()));
+                filtriSelezionati[7]=true;
+            }else
+                filtriSelezionati[7]=false;
+            if (ordineCrescente.isSelected()) {
+                Collections.sort(autoFiltrate);
+                inventarioAuto.ordinaInBaseAlPrezzo();
+                filtriSelezionati[8]=true;
+            }else
+                filtriSelezionati[8]=false;
+
+            cancellaFiltrati(autoFiltrate);
+        });
+        cambioColorePassaggioMouse(inserisciFiltri,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
+
+        Button cancellaFiltri = new Button("Cancella filtri");
+        cancellaFiltri.setLayoutX(173.0);
+        cancellaFiltri.setLayoutY(271.0);
+        cancellaFiltri.setPrefSize(203.0, 38.0);
+        cancellaFiltri.setStyle("-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
+        cancellaFiltri.setTextFill(javafx.scene.paint.Color.web("#30323D"));
+        cancellaFiltri.setFont(Font.font("Pivot Classic", 16.0));
+        cancellaFiltri.setOnAction(e->{
+            Arrays.fill(filtriSelezionati,false);
+            cancellaAuto();
+        });
+        cambioColorePassaggioMouse(cancellaFiltri,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
+
+
+        // Add all elements to the root
+        boxDinamica.getChildren().addAll(label,nuove,usate,km0,speciali,disabili, marca,marcatext, modello,modellotext, alimentazione,alimentazioneText, ordineCrescente, inserisciFiltri, cancellaFiltri);
+    }
+    @FXML
+    public void cancellaFiltrati(ArrayList<Auto> autoFiltrate){
+        boxDinamica.setVisible(true);
+        boxDinamica.setDisable(false);
+        bFisso.setText("Auto disponibili");
+        boxDinamica.getChildren().clear();
+        entrataAnchor(boxDinamica,1200,0);
+
+        Button filtra = new Button("Filtra");
+        filtra.setLayoutX(420);
+        filtra.setLayoutY(14);
+        filtra.setPrefSize(148, 39);
+        filtra.setStyle("-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
+        filtra.setTextFill(javafx.scene.paint.Color.web("#30323D"));
+        filtra.setFont(Font.font("Pivot Classic", 16.0));
+        filtra.setOnAction(e->{
+            filtraCancella();
+        });
+        cambioColorePassaggioMouse(filtra,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
+
+        // ScrollPane
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setLayoutX(14.0);
+        scrollPane.setLayoutY(60.0);
+        scrollPane.setPrefSize(590.0, 387.0);
+        scrollPane.setStyle("-fx-background-color: #F4FAFF;");
+
+        // VBox inside ScrollPane
+        VBox vBox = new VBox();
+        vBox.setPrefSize(572.0, 408.0);
+        vBox.setStyle("-fx-background-color: #F4FAFF;");
+
+        if (autoFiltrate.size()%2==0){
+            for (int i=0;i<autoFiltrate.size();i+=2){
+                HBox hBox1 = aggiungiRiga(autoFiltrate.get(i),autoFiltrate.get(i+1),vBox);
+                Pane spazio = new Pane();
+                spazio.setPrefSize(572.0, 50.0);
+
+                vBox.getChildren().addAll(hBox1, spazio);
+            }
+        }else{
+            for (int i=0;i<autoFiltrate.size()-1;i+=2){
+                HBox hBox1 = aggiungiRiga(autoFiltrate.get(i),autoFiltrate.get(i+1),vBox);
+                Pane spazio = new Pane();
+                spazio.setPrefSize(572.0, 50.0);
+
+                vBox.getChildren().addAll(hBox1, spazio);
+            }
+            HBox hBox2 = aggiungiRigaSola(autoFiltrate.getLast(),vBox);
+            vBox.getChildren().add(hBox2);
+        }
+        Pane spazio2 = new Pane(); //Spaziatura aggiuntiva
+        spazio2.setPrefSize(572.0, 50.0);
+        vBox.getChildren().add(spazio2);
+
+        scrollPane.setContent(vBox);
+
+        Label labelTitolo = new Label("Seleziona l'auto da cancellare: ");
+        labelTitolo.setLayoutX(22.0);
+        labelTitolo.setLayoutY(14.0);
+        labelTitolo.setPrefSize(400, 31.0);
+        labelTitolo.setStyle("-fx-font-family: 'Pivot Classic'; -fx-font-size: 24.0;");
+        // Aggiunta degli elementi al pannello
+        boxDinamica.getChildren().addAll(labelTitolo,filtra,scrollPane);
     }
 
     //RICERCA
@@ -1666,6 +1976,18 @@ public class ConcessionarioInventarioView {
         boxDinamica.getChildren().clear();
         entrataAnchor(boxDinamica,1200,0);
 
+        Button filtra = new Button("Filtra");
+        filtra.setLayoutX(420);
+        filtra.setLayoutY(14);
+        filtra.setPrefSize(148, 39);
+        filtra.setStyle("-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
+        filtra.setTextFill(javafx.scene.paint.Color.web("#30323D"));
+        filtra.setFont(Font.font("Pivot Classic", 16.0));
+        filtra.setOnAction(e->{
+           filtra();
+        });
+        cambioColorePassaggioMouse(filtra,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
+
         // ScrollPane
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setLayoutX(14.0);
@@ -1706,10 +2028,10 @@ public class ConcessionarioInventarioView {
         Label labelTitolo = new Label("Ecco tutte le auto: ");
         labelTitolo.setLayoutX(22.0);
         labelTitolo.setLayoutY(14.0);
-        labelTitolo.setPrefSize(575.0, 31.0);
+        labelTitolo.setPrefSize(400, 31.0);
         labelTitolo.setStyle("-fx-font-family: 'Pivot Classic'; -fx-font-size: 24.0;");
         // Aggiunta degli elementi al pannello
-        boxDinamica.getChildren().addAll(labelTitolo,scrollPane);
+        boxDinamica.getChildren().addAll(labelTitolo,filtra,scrollPane);
     }
     @FXML
     private void mostraMeglio(VBox vbox,Auto auto){
@@ -1960,6 +2282,300 @@ public class ConcessionarioInventarioView {
         hBox.getChildren().addAll(pane1);
 
         return hBox;
+    }
+    @FXML
+    private void filtra(){
+        boxDinamica.getChildren().clear();
+
+        // Create the Label
+        Label label = new Label("Seleziona le categorie che vuoi vedere");
+        label.setLayoutX(37.0);
+        label.setLayoutY(14.0);
+        label.setPrefSize(393.0, 18.0);
+        label.setFont(Font.font("Pivot Classic", 18.0));
+
+        // Create CheckBoxes
+        CheckBox nuove = new CheckBox("Auto nuove");
+        nuove.setLayoutX(37.0);
+        nuove.setLayoutY(66.0);
+        nuove.setMnemonicParsing(false);
+        nuove.setSelected(filtriSelezionati[0]);
+        nuove.setPrefSize(150.0, 24.0);
+        nuove.setFont(Font.font("Goudy Old Style Bold", 12.0));
+
+        CheckBox usate = new CheckBox("Auto usate");
+        usate.setLayoutX(37.0);
+        usate.setLayoutY(104.0);
+        usate.setMnemonicParsing(false);
+        usate.setSelected(filtriSelezionati[1]);
+        usate.setPrefSize(150, 24.0);
+        usate.setFont(Font.font("Goudy Old Style Bold", 12.0));
+
+        CheckBox km0 = new CheckBox("Auto Km0");
+        km0.setLayoutX(37.0);
+        km0.setLayoutY(144.0);
+        km0.setMnemonicParsing(false);
+        km0.setSelected(filtriSelezionati[2]);
+        km0.setPrefSize(312.0, 24.0);
+        km0.setFont(Font.font("Goudy Old Style Bold", 12.0));
+
+        CheckBox speciali = new CheckBox("Auto speciali");
+        speciali.setLayoutX(37.0);
+        speciali.setLayoutY(180.0);
+        speciali.setMnemonicParsing(false);
+        speciali.setSelected(filtriSelezionati[3]);
+        speciali.setPrefSize(150, 24.0);
+        speciali.setFont(Font.font("Goudy Old Style Bold", 12.0));
+
+        CheckBox disabili = new CheckBox("Auto disabili");
+        disabili.setLayoutX(37.0);
+        disabili.setLayoutY(218.0);
+        disabili.setMnemonicParsing(false);
+        disabili.setSelected(filtriSelezionati[4]);
+        disabili.setPrefSize(150, 24.0);
+        disabili.setFont(Font.font("Goudy Old Style Bold", 12.0));
+
+        // Create CheckBoxes
+        CheckBox marca = new CheckBox("Marca");
+        marca.setLayoutX(160);
+        marca.setLayoutY(66.0);
+        marca.setMnemonicParsing(false);
+        marca.setSelected(filtriSelezionati[5]);
+        marca.setPrefSize(150.0, 24.0);
+        marca.setFont(Font.font("Goudy Old Style Bold", 12.0));
+
+        TextField marcatext = new TextField();
+        marcatext.setLayoutX(320);
+        marcatext.setLayoutY(66);
+        marcatext.setPrefSize(130, 12);
+        marcatext.setPromptText("Panda");
+        marcatext.setStyle("-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-border-image-width: 1.4; " +
+                "-fx-border-radius: 12 0 12 0; -fx-background-radius: 12 0 12 0;");
+        marcatext.setFont(new Font("Goudy Old Style", 12));
+        marcatext.setVisible(false);
+        marcatext.setDisable(true);
+
+        marca.setOnMouseClicked(e->{
+            if (marca.isSelected()){
+                marcatext.setVisible(true);
+                marcatext.setDisable(false);
+            }else{
+                marcatext.setVisible(false);
+                marcatext.setDisable(true);
+            }
+        });
+
+
+        CheckBox modello = new CheckBox("Modello");
+        modello.setLayoutX(160);
+        modello.setLayoutY(104.0);
+        modello.setMnemonicParsing(false);
+        modello.setSelected(filtriSelezionati[6]);
+        modello.setPrefSize(150, 24.0);
+        modello.setFont(Font.font("Goudy Old Style Bold", 12.0));
+
+        TextField modellotext = new TextField();
+        modellotext.setLayoutX(320);
+        modellotext.setLayoutY(104);
+        modellotext.setPrefSize(130, 12);
+        modellotext.setPromptText("Panda");
+        modellotext.setStyle("-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-border-image-width: 1.4; " +
+                "-fx-border-radius: 12 0 12 0; -fx-background-radius: 12 0 12 0;");
+        modellotext.setFont(new Font("Goudy Old Style", 12));
+        modellotext.setVisible(false);
+        modellotext.setDisable(true);
+
+        modello.setOnMouseClicked(e->{
+            if (modello.isSelected()){
+                modellotext.setVisible(true);
+                modellotext.setDisable(false);
+            }else{
+                modellotext.setVisible(false);
+                modellotext.setDisable(true);
+            }
+        });
+
+        CheckBox alimentazione = new CheckBox("Alimentazione");
+        alimentazione.setLayoutX(160);
+        alimentazione.setLayoutY(144.0);
+        alimentazione.setMnemonicParsing(false);
+        alimentazione.setSelected(filtriSelezionati[7]);
+        alimentazione.setPrefSize(312.0, 24.0);
+        alimentazione.setFont(Font.font("Goudy Old Style Bold", 12.0));
+
+        // ChoiceBox
+        ChoiceBox<String> alimentazioneText = new ChoiceBox<>();
+        alimentazioneText.setLayoutX(320);
+        alimentazioneText.setLayoutY(144);
+        alimentazioneText.setPrefSize(130, 26);
+        alimentazioneText.setStyle("-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-border-image-width: 1.4; " +
+                "-fx-border-radius: 12 0 12 0; -fx-background-radius: 12 0 12 0;");
+        alimentazioneText.getItems().addAll("Benzina", "Diesel", "Elettrico", "Mild-Hybrid",
+                "Full-Hybrid", "Plug-in Hybrid", "Idrogeno");
+        alimentazioneText.setVisible(false);
+        alimentazioneText.setDisable(true);
+
+        alimentazione.setOnMouseClicked(e->{
+            if (alimentazione.isSelected()){
+                alimentazioneText.setVisible(true);
+                alimentazioneText.setDisable(false);
+            }else{
+                alimentazioneText.setVisible(false);
+                alimentazioneText.setDisable(true);
+            }
+        });
+
+        CheckBox ordineCrescente = new CheckBox("Ordine crescente");
+        ordineCrescente.setLayoutX(160);
+        ordineCrescente.setLayoutY(180.0);
+        ordineCrescente.setMnemonicParsing(false);
+        ordineCrescente.setSelected(filtriSelezionati[8]);
+        ordineCrescente.setPrefSize(150, 24.0);
+        ordineCrescente.setFont(Font.font("Goudy Old Style Bold", 12.0));
+
+
+        // Create Buttons
+        Button inserisciFiltri = new Button("Inserisci filtri");
+        inserisciFiltri.setLayoutX(393.0);
+        inserisciFiltri.setLayoutY(271.0);
+        inserisciFiltri.setPrefSize(203.0, 28.0);
+        inserisciFiltri.setStyle("-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
+        inserisciFiltri.setTextFill(javafx.scene.paint.Color.web("#30323D"));
+        inserisciFiltri.setFont(Font.font("Pivot Classic", 16.0));
+        inserisciFiltri.setOnAction(e->{
+            ArrayList <Auto> autoFiltrate=new ArrayList<Auto>();
+            if (nuove.isSelected()) {
+                autoFiltrate.addAll(inventarioAuto.ricercaAutoNuove());
+                filtriSelezionati[0]=true;
+            }else
+                filtriSelezionati[0]=false;
+            if (usate.isSelected()) {
+                autoFiltrate.addAll(inventarioAuto.ricercaAutoUsate());
+                filtriSelezionati[1]=true;
+            }else
+                filtriSelezionati[1]=false;
+            if (km0.isSelected()) {
+                autoFiltrate.addAll(inventarioAuto.ricercaAutoKm0());
+                filtriSelezionati[2]=true;
+            }else
+                filtriSelezionati[2]=false;
+            if (speciali.isSelected()) {
+                autoFiltrate.addAll(inventarioAuto.ricercaAutoSpeciali());
+                filtriSelezionati[3]=true;
+            }else
+                filtriSelezionati[3]=false;
+            if (disabili.isSelected()) {
+                autoFiltrate.addAll(inventarioAuto.ricercaAutoDisabili());
+                filtriSelezionati[4]=true;
+            }else
+                filtriSelezionati[4]=false;
+            if (marca.isSelected()) {
+                autoFiltrate.addAll(inventarioAuto.ricercaMarca(marcatext.getText()));
+                filtriSelezionati[5]=true;
+            }else
+                filtriSelezionati[5]=false;
+            if (modello.isSelected()) {
+                autoFiltrate.addAll(inventarioAuto.ricercaModello(modellotext.getText()));
+                filtriSelezionati[6]=true;
+            }else
+                filtriSelezionati[6]=false;
+            if (alimentazione.isSelected()) {
+                autoFiltrate.addAll(inventarioAuto.ricercaAutoAlimentazione(alimentazioneText.getValue()));
+                filtriSelezionati[7]=true;
+            }else
+                filtriSelezionati[7]=false;
+            if (ordineCrescente.isSelected()) {
+                Collections.sort(autoFiltrate);
+                inventarioAuto.ordinaInBaseAlPrezzo();
+                filtriSelezionati[8]=true;
+            }else
+                filtriSelezionati[8]=false;
+
+            mostraFiltrati(autoFiltrate);
+        });
+        cambioColorePassaggioMouse(inserisciFiltri,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
+
+        Button cancellaFiltri = new Button("Cancella filtri");
+        cancellaFiltri.setLayoutX(173.0);
+        cancellaFiltri.setLayoutY(271.0);
+        cancellaFiltri.setPrefSize(203.0, 38.0);
+        cancellaFiltri.setStyle("-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
+        cancellaFiltri.setTextFill(javafx.scene.paint.Color.web("#30323D"));
+        cancellaFiltri.setFont(Font.font("Pivot Classic", 16.0));
+        cancellaFiltri.setOnAction(e->{
+            Arrays.fill(filtriSelezionati,false);
+            mostraTutto();
+        });
+        cambioColorePassaggioMouse(cancellaFiltri,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
+
+
+        // Add all elements to the root
+        boxDinamica.getChildren().addAll(label,nuove,usate,km0,speciali,disabili, marca,marcatext, modello,modellotext, alimentazione,alimentazioneText, ordineCrescente, inserisciFiltri, cancellaFiltri);
+    }
+    @FXML
+    public void mostraFiltrati(ArrayList<Auto> autoFiltrate){
+        boxDinamica.setVisible(true);
+        boxDinamica.setDisable(false);
+        bFisso.setText("Auto disponibili");
+        boxDinamica.getChildren().clear();
+        entrataAnchor(boxDinamica,1200,0);
+
+        Button filtra = new Button("Filtra");
+        filtra.setLayoutX(420);
+        filtra.setLayoutY(14);
+        filtra.setPrefSize(148, 39);
+        filtra.setStyle("-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
+        filtra.setTextFill(javafx.scene.paint.Color.web("#30323D"));
+        filtra.setFont(Font.font("Pivot Classic", 16.0));
+        filtra.setOnAction(e->{
+            filtra();
+        });
+        cambioColorePassaggioMouse(filtra,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
+
+        // ScrollPane
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setLayoutX(14.0);
+        scrollPane.setLayoutY(60.0);
+        scrollPane.setPrefSize(590.0, 387.0);
+        scrollPane.setStyle("-fx-background-color: #F4FAFF;");
+
+        // VBox inside ScrollPane
+        VBox vBox = new VBox();
+        vBox.setPrefSize(572.0, 408.0);
+        vBox.setStyle("-fx-background-color: #F4FAFF;");
+
+        if (autoFiltrate.size()%2==0){
+            for (int i=0;i<autoFiltrate.size();i+=2){
+                HBox hBox1 = aggiungiRigaVista(autoFiltrate.get(i),autoFiltrate.get(i+1),vBox);
+                Pane spazio = new Pane();
+                spazio.setPrefSize(572.0, 50.0);
+
+                vBox.getChildren().addAll(hBox1, spazio);
+            }
+        }else{
+            for (int i=0;i<autoFiltrate.size()-1;i+=2){
+                HBox hBox1 = aggiungiRigaVista(autoFiltrate.get(i),autoFiltrate.get(i+1),vBox);
+                Pane spazio = new Pane();
+                spazio.setPrefSize(572.0, 50.0);
+
+                vBox.getChildren().addAll(hBox1, spazio);
+            }
+            HBox hBox2 = aggiungiRigaSolaVista(autoFiltrate.getLast(),vBox);
+            vBox.getChildren().add(hBox2);
+        }
+        Pane spazio2 = new Pane(); //Spaziatura aggiuntiva
+        spazio2.setPrefSize(572.0, 50.0);
+        vBox.getChildren().add(spazio2);
+
+        scrollPane.setContent(vBox);
+
+        Label labelTitolo = new Label("Ecco tutte le auto: ");
+        labelTitolo.setLayoutX(22.0);
+        labelTitolo.setLayoutY(14.0);
+        labelTitolo.setPrefSize(400, 31.0);
+        labelTitolo.setStyle("-fx-font-family: 'Pivot Classic'; -fx-font-size: 24.0;");
+        // Aggiunta degli elementi al pannello
+        boxDinamica.getChildren().addAll(labelTitolo,filtra,scrollPane);
     }
 
     //Animazione

@@ -15,7 +15,7 @@
             </ImageView>
             <ImageView fitHeight="127.0" fitWidth="127.0" layoutY="-37.0" pickOnBounds="true" preserveRatio="true">
                 <image>
-                    <Image url="@img/logo.png" />
+                    <Image url="@img/stemma.png" />
                 </image>
             </ImageView>
             <Button fx:id="bFisso" layoutX="463.0" layoutY="27.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="409.0" style="-fx-background-color: #F4FAFF; -fx-background-radius: 16; -fx-border-color: #30323D; -fx-border-radius: 16; -fx-border-width: 2;" text="Inserisci le informazioni">
@@ -86,6 +86,11 @@
                     <font>
                         <Font name="Goudy Old Style" size="12.0" />
                     </font></TextField>
+            <AnchorPane layoutX="185.0" layoutY="71.0" prefHeight="172.0" prefWidth="261.0">
+               <children>
+                  <AnchorPane layoutX="101.0" layoutY="43.0" prefHeight="80.0" prefWidth="86.0" />
+               </children>
+            </AnchorPane>
             </children>
         </AnchorPane>
         <AnchorPane fx:id="vistaPrincipale" layoutX="107.0" layoutY="115.0" prefHeight="454.0" prefWidth="686.0" style="-fx-background-color: #F4FAFF; -fx-background-radius: 16; -fx-border-color: #30323D; -fx-border-radius: 16; -fx-border-width: 1.5;" visible="false">

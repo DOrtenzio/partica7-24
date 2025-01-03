@@ -21,6 +21,7 @@ import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class ClienteController {
     @FXML
@@ -34,7 +35,7 @@ public class ClienteController {
     private Privato privato;
 
     private boolean isFirstView;
-    private boolean [] filtriSelezionati=new boolean[5];
+    private boolean [] filtriSelezionati=new boolean[9];
     private InventarioAuto inventarioAuto;
     private RegistroAcquisti registroAcquisti;
 
@@ -633,16 +634,16 @@ public class ClienteController {
         nuove.setLayoutY(66.0);
         nuove.setMnemonicParsing(false);
         nuove.setSelected(filtriSelezionati[0]);
-        nuove.setPrefSize(312.0, 24.0);
-        nuove.setFont(Font.font("Goudy Old Style Bold", 18.0));
+        nuove.setPrefSize(150.0, 24.0);
+        nuove.setFont(Font.font("Goudy Old Style Bold", 12.0));
 
         CheckBox usate = new CheckBox("Auto usate");
         usate.setLayoutX(37.0);
         usate.setLayoutY(104.0);
         usate.setMnemonicParsing(false);
         usate.setSelected(filtriSelezionati[1]);
-        usate.setPrefSize(312.0, 24.0);
-        usate.setFont(Font.font("Goudy Old Style Bold", 18.0));
+        usate.setPrefSize(150, 24.0);
+        usate.setFont(Font.font("Goudy Old Style Bold", 12.0));
 
         CheckBox km0 = new CheckBox("Auto Km0");
         km0.setLayoutX(37.0);
@@ -650,23 +651,122 @@ public class ClienteController {
         km0.setMnemonicParsing(false);
         km0.setSelected(filtriSelezionati[2]);
         km0.setPrefSize(312.0, 24.0);
-        km0.setFont(Font.font("Goudy Old Style Bold", 18.0));
+        km0.setFont(Font.font("Goudy Old Style Bold", 12.0));
 
         CheckBox speciali = new CheckBox("Auto speciali");
         speciali.setLayoutX(37.0);
         speciali.setLayoutY(180.0);
         speciali.setMnemonicParsing(false);
         speciali.setSelected(filtriSelezionati[3]);
-        speciali.setPrefSize(312.0, 24.0);
-        speciali.setFont(Font.font("Goudy Old Style Bold", 18.0));
+        speciali.setPrefSize(150, 24.0);
+        speciali.setFont(Font.font("Goudy Old Style Bold", 12.0));
 
         CheckBox disabili = new CheckBox("Auto disabili");
         disabili.setLayoutX(37.0);
         disabili.setLayoutY(218.0);
         disabili.setMnemonicParsing(false);
         disabili.setSelected(filtriSelezionati[4]);
-        disabili.setPrefSize(312.0, 24.0);
-        disabili.setFont(Font.font("Goudy Old Style Bold", 18.0));
+        disabili.setPrefSize(150, 24.0);
+        disabili.setFont(Font.font("Goudy Old Style Bold", 12.0));
+
+        // Create CheckBoxes
+        CheckBox marca = new CheckBox("Marca");
+        marca.setLayoutX(160);
+        marca.setLayoutY(66.0);
+        marca.setMnemonicParsing(false);
+        marca.setSelected(filtriSelezionati[5]);
+        marca.setPrefSize(150.0, 24.0);
+        marca.setFont(Font.font("Goudy Old Style Bold", 12.0));
+
+        TextField marcatext = new TextField();
+        marcatext.setLayoutX(320);
+        marcatext.setLayoutY(66);
+        marcatext.setPrefSize(130, 12);
+        marcatext.setPromptText("Panda");
+        marcatext.setStyle("-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-border-image-width: 1.4; " +
+                "-fx-border-radius: 12 0 12 0; -fx-background-radius: 12 0 12 0;");
+        marcatext.setFont(new Font("Goudy Old Style", 12));
+        marcatext.setVisible(false);
+        marcatext.setDisable(true);
+
+        marca.setOnMouseClicked(e->{
+            if (marca.isSelected()){
+                marcatext.setVisible(true);
+                marcatext.setDisable(false);
+            }else{
+                marcatext.setVisible(false);
+                marcatext.setDisable(true);
+            }
+        });
+
+
+        CheckBox modello = new CheckBox("Modello");
+        modello.setLayoutX(160);
+        modello.setLayoutY(104.0);
+        modello.setMnemonicParsing(false);
+        modello.setSelected(filtriSelezionati[6]);
+        modello.setPrefSize(150, 24.0);
+        modello.setFont(Font.font("Goudy Old Style Bold", 12.0));
+
+        TextField modellotext = new TextField();
+        modellotext.setLayoutX(320);
+        modellotext.setLayoutY(104);
+        modellotext.setPrefSize(130, 12);
+        modellotext.setPromptText("Panda");
+        modellotext.setStyle("-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-border-image-width: 1.4; " +
+                "-fx-border-radius: 12 0 12 0; -fx-background-radius: 12 0 12 0;");
+        modellotext.setFont(new Font("Goudy Old Style", 12));
+        modellotext.setVisible(false);
+        modellotext.setDisable(true);
+
+        modello.setOnMouseClicked(e->{
+            if (modello.isSelected()){
+                modellotext.setVisible(true);
+                modellotext.setDisable(false);
+            }else{
+                modellotext.setVisible(false);
+                modellotext.setDisable(true);
+            }
+        });
+
+        CheckBox alimentazione = new CheckBox("Alimentazione");
+        alimentazione.setLayoutX(160);
+        alimentazione.setLayoutY(144.0);
+        alimentazione.setMnemonicParsing(false);
+        alimentazione.setSelected(filtriSelezionati[7]);
+        alimentazione.setPrefSize(312.0, 24.0);
+        alimentazione.setFont(Font.font("Goudy Old Style Bold", 12.0));
+
+        // ChoiceBox
+        ChoiceBox<String> alimentazioneText = new ChoiceBox<>();
+        alimentazioneText.setLayoutX(320);
+        alimentazioneText.setLayoutY(144);
+        alimentazioneText.setPrefSize(130, 26);
+        alimentazioneText.setStyle("-fx-background-color: #F4FAFF; -fx-border-color: #30323D; -fx-border-image-width: 1.4; " +
+                "-fx-border-radius: 12 0 12 0; -fx-background-radius: 12 0 12 0;");
+        alimentazioneText.getItems().addAll("Benzina", "Diesel", "Elettrico", "Mild-Hybrid",
+                "Full-Hybrid", "Plug-in Hybrid", "Idrogeno");
+        alimentazioneText.setVisible(false);
+        alimentazioneText.setDisable(true);
+
+        alimentazione.setOnMouseClicked(e->{
+            if (alimentazione.isSelected()){
+                alimentazioneText.setVisible(true);
+                alimentazioneText.setDisable(false);
+            }else{
+                alimentazioneText.setVisible(false);
+                alimentazioneText.setDisable(true);
+            }
+        });
+
+        CheckBox ordineCrescente = new CheckBox("Ordine crescente");
+        ordineCrescente.setLayoutX(160);
+        ordineCrescente.setLayoutY(180.0);
+        ordineCrescente.setMnemonicParsing(false);
+        ordineCrescente.setSelected(filtriSelezionati[8]);
+        ordineCrescente.setPrefSize(150, 24.0);
+        ordineCrescente.setFont(Font.font("Goudy Old Style Bold", 12.0));
+
 
         // Create Buttons
         Button inserisciFiltri = new Button("Inserisci filtri");
@@ -703,6 +803,27 @@ public class ClienteController {
                 filtriSelezionati[4]=true;
             }else
                 filtriSelezionati[4]=false;
+            if (marca.isSelected()) {
+                autoFiltrate.addAll(inventarioAuto.ricercaMarca(marcatext.getText()));
+                filtriSelezionati[5]=true;
+            }else
+                filtriSelezionati[5]=false;
+            if (modello.isSelected()) {
+                autoFiltrate.addAll(inventarioAuto.ricercaModello(modellotext.getText()));
+                filtriSelezionati[6]=true;
+            }else
+                filtriSelezionati[6]=false;
+            if (alimentazione.isSelected()) {
+                autoFiltrate.addAll(inventarioAuto.ricercaAutoAlimentazione(alimentazioneText.getValue()));
+                filtriSelezionati[7]=true;
+            }else
+                filtriSelezionati[7]=false;
+            if (ordineCrescente.isSelected()) {
+                Collections.sort(autoFiltrate);
+                inventarioAuto.ordinaInBaseAlPrezzo();
+                filtriSelezionati[8]=true;
+            }else
+                filtriSelezionati[8]=false;
 
             schermataPrincipale(autoFiltrate);
         });
@@ -723,7 +844,7 @@ public class ClienteController {
 
 
         // Add all elements to the root
-        vistaDinamica.getChildren().addAll(label, nuove, usate, km0, speciali, disabili, inserisciFiltri, cancellaFiltri);
+        vistaDinamica.getChildren().addAll(label,nuove,usate,km0,speciali,disabili, marca,marcatext, modello,modellotext, alimentazione,alimentazioneText, ordineCrescente, inserisciFiltri, cancellaFiltri);
     }
 
     //Ricerca
