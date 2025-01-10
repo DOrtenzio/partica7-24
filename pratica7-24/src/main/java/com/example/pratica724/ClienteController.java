@@ -1673,7 +1673,7 @@ public class ClienteController {
         AnchorPane box5 = new AnchorPane();
         box5.setId("box5");
         box5.setDisable(true);
-        box5.setLayoutX(219.0);
+        box5.setLayoutX(308.5);
         box5.setLayoutY(214.0);
         box5.setPrefHeight(142.0);
         box5.setPrefWidth(283.0);
