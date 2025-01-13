@@ -852,6 +852,7 @@ public class ConcessionarioInventarioView {
                 confermaCancellazione(auto1);
             } catch (Exception ex) {
                 avvisoVisivo("Errore","bc0000");
+                System.out.println(ex);
             }
         });
         cambioColorePassaggioMouse(selezionaButton,"-fx-background-color: #F2ED6F; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;","-fx-background-color: #F1E4F3; -fx-border-color: #30323D; -fx-background-radius: 32; -fx-border-width: 1.2; -fx-border-radius: 32;");
@@ -923,6 +924,7 @@ public class ConcessionarioInventarioView {
                 confermaCancellazione(auto2);
             } catch (Exception ex) {
                 avvisoVisivo("Errore","bc0000");
+                System.out.println(ex);
             }
         });
 
@@ -997,6 +999,7 @@ public class ConcessionarioInventarioView {
                 confermaCancellazione(auto1);
             } catch (Exception ex) {
                 avvisoVisivo("Errore","bc0000");
+                System.out.println(ex);
             }
         });
 
@@ -1116,19 +1119,19 @@ public class ConcessionarioInventarioView {
         boxDinamica.setDisable(true);
 
         // Creazione dell'AnchorPane
-        AnchorPane box5 = new AnchorPane();
-        box5.setId("box5");
-        box5.setDisable(true);
-        box5.setLayoutX(308.5);
-        box5.setLayoutY(214.0);
-        box5.setPrefHeight(142.0);
-        box5.setPrefWidth(283.0);
-        box5.setStyle("-fx-background-color: F4FAFF; " +
+        AnchorPane confermaBox = new AnchorPane();
+        confermaBox.setId("confermaBox");
+        confermaBox.setDisable(true);
+        confermaBox.setLayoutX(308.5);
+        confermaBox.setLayoutY(214.0);
+        confermaBox.setPrefHeight(142.0);
+        confermaBox.setPrefWidth(283.0);
+        confermaBox.setStyle("-fx-background-color: F4FAFF; " +
                 "-fx-background-radius: 12; " +
                 "-fx-border-color: #24292f; " +
                 "-fx-border-radius: 12; " +
                 "-fx-border-width: 2;");
-        box5.setVisible(false);
+        confermaBox.setVisible(false);
 
         // Creazione del primo pulsante (No)
         Button buttonNo = new Button("No");
@@ -1146,15 +1149,15 @@ public class ConcessionarioInventarioView {
         );
         buttonNo.setWrapText(true);
         buttonNo.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
-        buttonNo.setOnAction(event ->{
-            box5.setVisible(false);
-            box5.setDisable(true);
+        buttonNo.setOnAction(e ->{
+            confermaBox.setVisible(false);
+            confermaBox.setDisable(true);
 
             boxDinamica.setDisable(false);
             boxPulsanti.setDisable(false);
         });
         //Metodo per cambio colore quando mouse sovrappone
-        buttonNo.setOnMouseMoved(event -> {
+        buttonNo.setOnMouseMoved(e -> {
             buttonNo.setStyle("-fx-border-color: #24292f; " +
                     "-fx-border-radius: 16; " +
                     "-fx-background-radius: 16; " +
@@ -1162,7 +1165,7 @@ public class ConcessionarioInventarioView {
                     "-fx-font-family: 'Goudy Stout'; " +
                     "-fx-font-size: 10;");
         });
-        buttonNo.setOnMouseExited(event -> {
+        buttonNo.setOnMouseExited(e -> {
             buttonNo.setStyle("-fx-border-color: #24292f; " +
                     "-fx-border-radius: 16; " +
                     "-fx-background-radius: 16; " +
@@ -1186,17 +1189,17 @@ public class ConcessionarioInventarioView {
                 "-fx-font-size: 10;");
         buttonSi.setWrapText(true);
         buttonSi.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
-        buttonSi.setOnAction(event ->{
+        buttonSi.setOnAction(e ->{
             cancellaSelezionata(auto);
-            entrataAnchor(box5,0,1200);
+            entrataAnchor(confermaBox,0,1200);
 
             boxDinamica.setDisable(false);
             boxPulsanti.setDisable(false);
-            box5.setDisable(true);
-            box5.setVisible(false);
+            confermaBox.setDisable(true);
+            confermaBox.setVisible(false);
         });
         //Metodo per cambio colore quando mouse sovrappone
-        buttonSi.setOnMouseMoved(event -> {
+        buttonSi.setOnMouseMoved(e -> {
             buttonSi.setStyle("-fx-border-color: #24292f; " +
                     "-fx-border-radius: 16; " +
                     "-fx-background-radius: 16; " +
@@ -1204,7 +1207,7 @@ public class ConcessionarioInventarioView {
                     "-fx-font-family: 'Goudy Stout'; " +
                     "-fx-font-size: 10;");
         });
-        buttonSi.setOnMouseExited(event -> {
+        buttonSi.setOnMouseExited(e -> {
             buttonSi.setStyle("-fx-border-color: #24292f; " +
                     "-fx-border-radius: 16; " +
                     "-fx-background-radius: 16; " +
@@ -1224,13 +1227,13 @@ public class ConcessionarioInventarioView {
                 "-fx-font-size: 18;");
 
         // Aggiunta dei figli all'AnchorPane
-        box5.getChildren().addAll(buttonNo, buttonSi, label);
+        confermaBox.getChildren().addAll(buttonNo, buttonSi, label);
 
-        root.getChildren().add(box5);
+        root.getChildren().add(confermaBox);
 
-        box5.setDisable(false);
-        box5.setVisible(true);
-        entrataAnchor(box5,1200,0);
+        confermaBox.setDisable(false);
+        confermaBox.setVisible(true);
+        entrataAnchor(confermaBox,1200,0);
     }
     @FXML
     private void filtraCancella(){
