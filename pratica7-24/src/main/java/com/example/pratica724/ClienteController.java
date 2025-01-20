@@ -1549,7 +1549,7 @@ public class ClienteController {
         );
 
         // Label "Riepilogo : Modello - Marca"
-        Label label1 = new Label("Riepilogo : "+autoAcquistata.getModello()+" - "+autoAcquistata.getMarca());
+        Label label1 = new Label("Utente: "+this.privato.infoImportanti()+"Riepilogo acquisto : "+autoAcquistata.getModello()+" - "+autoAcquistata.getMarca());
         label1.setLayoutX(27.0);
         label1.setLayoutY(30.0);
         label1.setPrefSize(447.0, 43.0);

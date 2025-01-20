@@ -1,7 +1,5 @@
 package com.example.pratica724.auto;
 
-import java.time.LocalDate;
-
 public class AutoDisabili extends AutoSpeciali{
     private double larghezzaMaxCarrozzina;
 

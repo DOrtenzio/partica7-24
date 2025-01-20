@@ -48,6 +48,12 @@ public class Privato extends Utente{
     //metodi
     public void aggiungiAutoPreferite(Auto auto){ this.autoPreferite.add(auto); }
     public void rimuoviAutoPreferite(Auto auto){ this.autoPreferite.remove(auto); }
+
+    @Override
+    public String infoImportanti() {
+        return nomeCognome+" "+codiceFiscale;
+    }
+
     @Override
     public String toString(){ return "Privato: "+this.nomeCognome+super.toString()+"\n Codice Fiscale: "+this.codiceFiscale+"\n Numero CIE: "+this.codiceFiscale+"\n Auto attuale: "+this.autoAttuale.toString(); }
     @Override

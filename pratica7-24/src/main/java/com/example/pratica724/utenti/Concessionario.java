@@ -42,6 +42,11 @@ public class Concessionario extends Utente{
     public RegistroAcquisti getRegistroAcquisti() { return registroAcquisti; }
     public void setRegistroAcquisti(RegistroAcquisti registroAcquisti) { this.registroAcquisti = registroAcquisti; }
 
+    @Override
+    public String infoImportanti() {
+        return nomeAzienda+" "+pIva;
+    }
+
     //Metodi
     @Override
     public String toString(){ return "CONCESSIONARIA: "+this.nomeAzienda+super.toString()+"\n Sede Legale: "+this.sedeLegale+"\n Partita Iva: "+this.pIva+"\n Ragione Sociale: "+this.ragioneSociale; }

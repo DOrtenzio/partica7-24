@@ -3,7 +3,7 @@ package com.example.pratica724.utenti;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Utente {
+public abstract class Utente {
     private String nomeUtente,locazione,email,telefono,dataRegistrazione;
 
     //Costruttore
@@ -57,6 +57,9 @@ public class Utente {
         String telefonoRegex = "^(\\+\\d{1,3}[- ]?)?\\(?\\d{1,4}\\)?[- ]?\\d{1,4}[- ]?\\d{1,4}$"; // La regex permette numeri con prefisso internazionale (opzionale) e numeri separati da spazi, trattini o parentesi
         return numeroDiTelefono.matches(telefonoRegex);
     }
+
+    public abstract String infoImportanti();
+
     @Override
     public String toString(){ return "NomeUtente: "+this.nomeUtente+"\n Locazione attuale: "+this.nomeUtente+"\n Email: "+this.email+"\n Telefono: "+this.telefono+"\n Data di registrazione: "+this.dataRegistrazione; }
     @Override
